@@ -1293,8 +1293,9 @@ document.addEventListener('pointerdown', e => { if (!soundOn && !userMuted && e.
 // Paste your own links here once the form and the newsletter exist (see SETUP-be-counted.md).
 // The form link receives only the three answers and non-identifying page settings; never add names, emails or locations.
 const COUNT_CFG = {
-  formUrl: '',          // e.g. https://tally.so/r/XXXXXX  (anonymous form)
-  newsUrl: '',          // e.g. your newsletter's sign-up page
+  formUrl: '',          // the anonymous form's link (Google Form or Tally)
+  fields: null,         // Google Forms only: { keep_grass: 'entry.123', ... } printed by google-forms-setup.gs
+  newsUrl: '',          // the separate updates sign-up
 };
 const CLICKED = [], SEEN = { scenes: new Set(['block']), soundEver: false };
 function countParams() {
@@ -1307,7 +1308,14 @@ function countSummary() {
   const rows = [['Keep the grass', opt('ct_keep')], ['Your role', opt('ct_role')], ['Join?', opt('ct_join')], ['Divider', `${p.divider_pct_someday}% someday`], ['Scene now', p.scene === 'fest' ? 'festival' : 'the block'],
     ['Scenes seen', [...SEEN.scenes].map(x => x === 'fest' ? 'the festival' : 'the block').join(' and ')], ['Season', p.season], ['Dusk', p.dusk], ['Who you clicked', CLICKED.map(id => (PEOPLE.find(q => q.id === id) || {}).tag).filter(Boolean).join(', ') || 'nobody yet'], ['Sound', p.sound]];
   $('ctSummary').innerHTML = `<tr><th colspan="2">What the form will receive</th></tr>` + rows.map(r => `<tr><td>${r[0]}</td><td class="n">${r[1]}</td></tr>`).join('');
-  setLink('ctForm', 'ctFormMsg', COUNT_CFG.formUrl, p); }
+  setLink('ctForm', 'ctFormMsg', COUNT_CFG.formUrl, formParams(p)); }
+// Google Forms fill in by entry number, and choice questions need the exact wording of the choice
+function formParams(p) {
+  if (!COUNT_CFG.fields) return p;
+  const opt = id => $(id).selectedOptions[0].textContent, out = { usp: 'pp_url' };
+  const val = { ...p, keep_grass: opt('ct_keep'), role: opt('ct_role'), join: opt('ct_join') };
+  Object.entries(COUNT_CFG.fields).forEach(([k, entry]) => { if (entry && val[k] !== undefined) out[entry] = val[k]; });
+  return out; }
 function setLink(id, msgId, url, params) {
   const a = $(id); if (!url) { a.removeAttribute('href'); a.setAttribute('aria-disabled', 'true'); $(msgId).textContent = 'coming soon'; return; }
   let u; try { u = new URL(url); } catch (e) { a.removeAttribute('href'); $(msgId).textContent = 'link not valid'; return; }
