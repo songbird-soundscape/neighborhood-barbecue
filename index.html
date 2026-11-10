@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neighborhood Barbecue</title>
+<meta name="description" content="One block, one barbecue, two eras: a 1957 cookout and a greener someday where the herd keeps the grass, ending at a Tejano barbecue festival in the Beautiful Hensel Thicket. Drag the divider between them.">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACUUlEQVR4nMWXS2gTURSGv5ncLqStFJyVtAE3vhqhYqFFKj62ElGyseJWBrOxNGBdtIjopkJr6SJSXWWjAZEUq+BKBTcGKgit+KDURoOrBCUVRDdxMbmTmckkkzYz8YdL7j13cv7vnpxhMsq1pzkcKjsDPkuxLoRQ22ouPUwIIULtMb8eWQDgxqpug1CFCkKlXPkMZEhzCWL1VKZf5AI9+dV9C67x2590wP4TtFXSVw2y9EKF+XW9xnx+XTf3VREyaIIcyVwVIpnTbXvKvTfB9oCX/lsPtASQnYya86FbSy0BbLkJreYSppUmVR6tNN8DryaidfdOTG+vEs5nwbblledIt3IJ4O1m+b4dwKcmbDaP8zrfAA7+/cDnHQcA2Pu7Opd6/8c4eQ1AR6V0S09GiZ55yGzseF2TPbt3usZfr+QZByZOHQYg8+wBHWo1p8yfiKXvAsw8Pn9ZxoUIQSYzCtDQ3EvnTl+wzU+O7zcMLPmtknHlyp2jZYCXsx/p3eV+QqlGFZD69qtMX5diAnjJp3ugqr4uxTWeiKWziVg664yLH53CbwYA6uV1xn1xP3ao17bePNtTc83k84tDbt81AQamIhSSXxsaffleqolp8TAA3Ys/PUHdZOsBLR4mXyyRL5bQ4mHPdb5Y4t3NVcA4tRxOpYZHSA2PeAP4qdTGGqmNNc94YADNKpBbYHmuQD89lVWBfhbNPWt8cEzzBhiYijRctyqB8YZi/ifYioEPMIqsgA2iVQ2OaSzPGSV2U2XPeDWz0vgF0IRML+dd0A4Im8c/jc2z2U29ttYAAAAASUVORK5CYII=">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="theme-color" content="#2b8a3e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Neighborhood Barbecue">
+<meta property="og:description" content="One block, two eras: drag from a 1957 cookout to a greener someday where the herd keeps the grass, then on to a Tejano barbecue in the Thicket.">
+<meta property="og:url" content="https://songbird-soundscape.github.io/neighborhood-barbecue/">
+<meta property="og:image" content="https://songbird-soundscape.github.io/neighborhood-barbecue/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pixel-art street split down the middle: a 1957 barbecue with flamingos and a grill on the left, a garden barbecue with beehives and a bison herd on the right">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://songbird-soundscape.github.io/neighborhood-barbecue/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one pixel street like a window at the top, the controls right under it, then the people, the economy, the table and the sources. */
+:root {
+  --bg: #f1eee6; --panel: #fffdf8; --ink: #1f1d1a; --muted: #645e55; --line: #ddd5c6; --chip: #ebe5d8;
+  --past: #c2255c;       /* 1957: flamingo, cherry tablecloth, chrome-era red */
+  --fut: #2b8a3e;        /* someday: gardens and pasture */
+  --amber: #b5650d; --sky: #1c7ed6;
+  --f-pixel: "Silkscreen", "Courier New", monospace;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", Arial, sans-serif;
+  --f-mono: "DM Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15130f; --panel: #1e1b16; --ink: #ece6da; --muted: #a59d8f; --line: #353026; --chip: #29251e;
+  --past: #f06595; --fut: #5cc274; --amber: #f0a14a; --sky: #5aa9ff; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #15130f; --panel: #1e1b16; --ink: #ece6da; --muted: #a59d8f; --line: #353026; --chip: #29251e;
+  --past: #f06595; --fut: #5cc274; --amber: #f0a14a; --sky: #5aa9ff; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 44px; }
+.wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 16px; }
+.top { display: flex; flex-wrap: wrap; gap: 10px 16px; justify-content: space-between; align-items: flex-start; }
+.top > div { display: grid; gap: 6px; min-width: 0; flex: 1 1 520px; }
+h1 { font: 700 clamp(26px, 5vw, 46px)/1.05 var(--f-pixel); margin: 0; letter-spacing: 1px; text-wrap: balance; }
+h1 .a { color: var(--past); } h1 .b { color: var(--fut); }
+.top p { margin: 0; max-width: 74ch; color: var(--muted); }
+h2 { font: 700 15px/1.2 var(--f-pixel); letter-spacing: 1px; margin: 0; text-transform: uppercase; text-wrap: balance; }
+h3 { font: 700 15px/1.3 var(--f-body); margin: 0; }
+.eyebrow { font: 500 11.5px/1.2 var(--f-mono); text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); }
+.stage { position: relative; background: #0d1210; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); touch-action: pan-y; }
+#scene { display: block; width: 100%; image-rendering: pixelated; image-rendering: crisp-edges; }
+.controls { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 10px 18px; align-items: center; }
+.slider { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; }
+.slider span { font: 700 13px var(--f-pixel); letter-spacing: .5px; }
+.slider span.a { color: var(--past); } .slider span.b { color: var(--fut); }
+input[type=range] { width: 100%; accent-color: var(--fut); }
+.btns { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+button { font: 700 13px var(--f-body); color: var(--ink); background: var(--chip); border: 1px solid var(--line); border-radius: 8px; padding: 6px 11px; cursor: pointer; }
+button:hover { border-color: var(--fut); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--fut); outline-offset: 2px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; border-radius: 0; background: transparent; padding: 5px 10px; }
+.seg button[aria-pressed="true"] { background: var(--fut); color: var(--panel); }
+.seg.past button[aria-pressed="true"] { background: var(--past); }
+.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; }
+.toggle input { accent-color: var(--fut); width: 16px; height: 16px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--fut); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; min-height: 84px; }
+.card.past { border-left-color: var(--past); }
+.card p { margin: 0; max-width: 80ch; }
+.card .status { font-size: 14px; color: var(--muted); }
+.card .status b { color: var(--ink); }
+.bench { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: grid; gap: 12px; min-width: 0; }
+.bench > header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px; }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.who { display: flex; flex-wrap: wrap; gap: 6px; }
+.who button { font-weight: 400; font-size: 13px; }
+.who.past button { border-left: 3px solid var(--past); } .who.fut button { border-left: 3px solid var(--fut); }
+.who button[aria-current="true"] { background: var(--ink); color: var(--panel); }
+.rule { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: grid; gap: 4px; align-content: start; }
+.rule .n { font: 700 22px var(--f-pixel); color: var(--fut); line-height: 1; }
+.rule p { margin: 0; font-size: 14.5px; }
+.note { font-size: 14px; color: var(--muted); margin: 0; max-width: 80ch; }
+.note b { color: var(--ink); }
+table.econ { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.econ th, table.econ td { padding: 6px 6px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+table.econ th { font: 500 11px var(--f-mono); text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+.bar { width: 100%; min-width: 60px; height: 10px; background: var(--chip); border-radius: 5px; overflow: hidden; margin-top: 5px; }
+.bar i { display: block; height: 100%; background: var(--fut); }
+.bar i.low { background: var(--amber); }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font: 500 11.5px var(--f-mono); white-space: nowrap; color: var(--panel); background: var(--fut); }
+.pill.sup { background: var(--amber); } .pill.rota { background: var(--sky); }
+.wide { overflow-x: auto; }
+a.btn { display: inline-block; font: 700 13px var(--f-body); color: var(--ink); background: var(--chip); border: 1px solid var(--line); border-radius: 8px; padding: 6px 11px; text-decoration: none; cursor: pointer; }
+a.btn.go { background: var(--fut); border-color: var(--fut); color: var(--panel); }
+a.btn:hover { border-color: var(--fut); } a.btn:focus-visible { outline: 2px solid var(--fut); outline-offset: 2px; }
+select { font: 400 14px var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 5px 8px; max-width: 100%; }
+.ask { display: grid; gap: 4px; font-size: 14px; }
+table.sum { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.sum td, table.sum th { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+table.sum th { font: 500 11px var(--f-mono); text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+table.sum td.n { font-family: var(--f-mono); font-size: 12.5px; }
+ul.menu { margin: 0; padding-left: 18px; display: grid; gap: 3px; font-size: 14.5px; }
+.refs { font-size: 13px; color: var(--muted); display: grid; gap: 6px; margin: 0; padding-left: 18px; }
+footer { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+footer a, .refs a { color: var(--sky); }
+@media (max-width: 860px) { .controls, .two, .three { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1><span class="a">Neighborhood</span> <span class="b">Barbecue</span></h1>
+      <p>One block, one barbecue, two eras, and the herd that ties them together. On the left it's a Saturday in 1957: new cars, mown lawns, food from packages and a siren on a pole. On the right it's someday: the same houses and the same table, but the food comes from the neighbours' gardens, sheep crop the old lawns, bison graze the commons past the last house, and people work at crafts. Then everyone heads to the Beautiful Hensel Thicket for the City Barbecue Festival. Drag the divider to move between eras, and click anyone to hear what they do.</p>
+    </div>
+    <button id="themeBtn" aria-label="Switch colour theme">Theme: auto</button>
+  </div>
+
+  <div class="btns"><span class="eyebrow">Scene</span><span class="seg past" id="scenes"><button data-sc="block" aria-pressed="true">The block</button><button data-sc="fest" aria-pressed="false">City Barbecue Festival</button></span></div>
+
+  <div class="stage"><canvas id="scene" width="960" height="400" role="img" aria-label="A pixel-art street with three houses and a backyard barbecue, split by a draggable divider: 1957 on the left, a greener future on the right"></canvas></div>
+
+  <div class="controls">
+    <div class="slider">
+      <span class="a" id="panA">1957</span>
+      <input id="pan" type="range" min="0" max="100" value="50" aria-label="How much of the street shows the later era">
+      <span class="b" id="panB">Someday</span>
+    </div>
+    <div class="btns">
+      <button id="allPast">All 1957</button><button id="half">Half and half</button><button id="allFut">All someday</button>
+    </div>
+    <div class="btns">
+      <span class="eyebrow">Someday's season</span>
+      <span class="seg" id="seasons"><button data-s="0">Spring</button><button data-s="1" aria-pressed="true">Summer</button><button data-s="2">Autumn</button><button data-s="3">Winter</button></span>
+      <span class="seg" id="times"><button data-t="0" aria-pressed="true">Afternoon</button><button data-t="1">Dusk</button></span>
+    </div>
+    <div class="btns">
+      <button id="soundBtn" aria-pressed="false">Sound: off</button>
+      <button id="playBtn" aria-pressed="true">Pause</button>
+      <label class="toggle"><input type="checkbox" id="caps" checked> Name tags</label>
+    </div>
+  </div>
+
+  <div class="card" id="card" aria-live="polite">
+    <span class="eyebrow" id="cardEra">Click anyone on the street</span>
+    <h3 id="cardTitle">Who's here?</h3>
+    <p id="cardText">Everyone at the barbecue has a small tag. Click a person (or a tag, or the list below) to read what they do and how they live. The first click also starts the sound: lawn sprinklers and a transistor radio on the left, birds, bees, sheep and a fiddle on the right, crossfading as you drag.</p>
+    <p class="status" id="cardStatus"></p>
+  </div>
+
+  <section class="bench" aria-labelledby="hGraze">
+    <header><h2 id="hGraze">The big grazers are the gist</h2><span class="eyebrow">what keeps the grass</span></header>
+    <p class="note">A prairie is kept by grazing and fire. Bison eat the grass and leave most of the flowers, roll out wallows that hold rain, and move on so the grass can rest; that is how the tallgrass stayed tallgrass for about ten thousand years. A lawn is the same ground held still by mowing, fertiliser and gasoline. In the someday half, the animals do the work the mowers did: sheep crop the old lawns and verges on the block, young shepherds move them every morning, and a bison herd grazes the commons and the park. The barbecue is where the neighbourhood shares what the land and the herd gave.</p>
+    <ul class="refs">
+      <li><b>Not all grazers are alike.</b> On the same prairie, bison and cattle leave different plant communities: cattle linger near water and shade and eat more of the flowers.</li>
+      <li><b>Goats browse instead of grazing.</b> They eat leaves, vines and brush, so cities hire goat herds to clear invasive thickets and steep slopes where mowers can't go. Texas raises more goats than any other state. In the festival scene they work the edge of the Thicket.</li>
+      <li><b>Sheep go for the flowering plants</b> more than the grass, which is why towns and ranchers hire flocks for verges, weeds and old lawns, and keep the bison on the prairie.</li>
+    </ul>
+  </section>
+
+  <section class="bench" aria-labelledby="hFest">
+    <header><h2 id="hFest">City Barbecue Festival</h2><span class="eyebrow">the Beautiful Hensel Thicket, near campus</span></header>
+    <p class="note">The whole city gathers in the Beautiful Hensel Thicket for Tejano barbecue, the best in the land and as close to a sacrament as food gets. <button id="goFest">Go to the festival</button></p>
+    <ul class="refs">
+      <li><b>Barbacoa.</b> In South Texas, barbacoa is traditionally a beef head wrapped in leaves or burlap, laid on mesquite coals in a pit in the ground, covered with earth and left to cook overnight. It comes up on Sunday morning and goes into tortillas with onion, cilantro and salsa, usually with family. Few places still cook it in a real pit; the festival keeps one going.</li>
+      <li><b>Fajitas.</b> South Texas ranch hands were often given the cheap cuts, skirt steak among them, and grilled them over mesquite. <i>Faja</i> means a belt or strip.</li>
+      <li><b>Pan de campo.</b> Camp bread from the cattle drives, baked in a skillet or Dutch oven; the official state bread of Texas since 2005.</li>
+      <li><b>Aguas frescas and raspas.</b> Horchata, jamaica and watermelon in big glass jars, and shaved ice with syrup for the kids.</li>
+      <li><b>Conjunto.</b> Button accordion and bajo sexto. The accordion reached South Texas with German and Czech settlers in the 1800s, and Tejano musicians made it the sound of the border.</li>
+      <li><b>The running gag.</b> Slide left and the festival is today: a leaf-blower crew is clearing the paths, a riding mower is doing laps, and you can barely hear the band. Slide right and the crew is gone, the herd is keeping the grass, and the music comes through clear. <a href="https://songbird-soundscape.github.io/two-stroke-morning/" target="_blank" rel="noopener">Two-Stroke Morning</a> has the decibels.</li>
+    </ul>
+  </section>
+
+  <section class="bench" aria-labelledby="hWho">
+    <header><h2 id="hWho">Who's at the barbecue</h2><span class="eyebrow">same spots, two eras</span></header>
+    <div class="two">
+      <div style="display:grid;gap:8px"><h3 style="color:var(--past)" id="whoPastH">1957</h3><div class="who past" id="whoPast"></div></div>
+      <div style="display:grid;gap:8px"><h3 style="color:var(--fut)">Someday</h3><div class="who fut" id="whoFut"></div></div>
+    </div>
+    <div id="whoBothWrap" style="display:grid;gap:8px" hidden><h3>On both sides</h3><div class="who" id="whoBoth"></div></div>
+    <p class="note" id="whoNote">Most things on the left have a counterpart on the right, in the same spot. The siren pole holds bat boxes now; the fallout shelter is the root cellar; the sprinkler became a pond; the driveway is beehives and an apple tree; the paper route became the shepherd's round.</p>
+  </section>
+
+  <section class="bench" aria-labelledby="hEcon">
+    <header><h2 id="hEcon">How the later block makes a living</h2><span class="eyebrow">pick a season above or here</span></header>
+    <div class="three">
+      <div class="rule"><span class="n">1</span><h3>Very good at one thing? That's a living.</h3><p>The block needs bread, plates, honey, cloth, wheels and music, and pays the people who make them well. If you're very good at one thing, you can make a living doing it.</p></div>
+      <div class="rule"><span class="n">2</span><h3>Nobody needs it right now? You're supported.</h3><p>When the need for your work dips, the block keeps you going until you find a purposeful use of your time again: learning a neighbour's craft, teaching, building. Nobody has to pretend to be busy.</p></div>
+      <div class="rule"><span class="n">3</span><h3>Some work is everyone's.</h3><p>Daily jobs nobody would do all day, like moving the flock, are shared out and paid. Young people start on them at about 13, the way a paper route used to be a first job: every day, rain or shine, trusted with something.</p></div>
+    </div>
+    <div class="btns"><span class="eyebrow">Season</span><span class="seg" id="seasons2"><button data-s="0">Spring</button><button data-s="1" aria-pressed="true">Summer</button><button data-s="2">Autumn</button><button data-s="3">Winter</button></span></div>
+    <div class="wide"><table class="econ" id="econ"></table></div>
+    <p class="note" id="econSum"></p>
+    <p class="note"><b>Where would the support come from?</b> This page doesn't settle that. People have tried versions of it for a long time: medieval craft guilds kept relief boxes for members who were sick or out of work; friendly societies and unions did the same; most countries now run unemployment insurance; and basic-income trials, such as Finland's in 2017 and 2018, found that people's wellbeing improved while their employment barely changed.</p>
+  </section>
+
+  <section class="bench" aria-labelledby="hThen">
+    <header><h2 id="hThen" style="color:var(--past)">How the 1957 block made a living</h2><span class="eyebrow">for comparison</span></header>
+    <p class="note">Mostly one paycheck per house, often from a big employer; a mortgage made cheap by federal loan programmes; and a car, a TV and a refrigerator bought on monthly payments. If the plant laid you off, unemployment insurance paid part of your wage for a set number of weeks. Those cheap loans and new houses were, by federal underwriting rules and by clauses in the deeds, mostly closed to Black families, which is why this block's 1957 side looks the way it does.</p>
+  </section>
+
+  <section class="bench" aria-labelledby="hTable">
+    <header><h2 id="hTable">What's on the table</h2><span class="eyebrow">same table, two menus</span></header>
+    <div class="two">
+      <div style="display:grid;gap:6px"><h3 style="color:var(--past)">1957</h3><ul class="menu">
+        <li>Hamburgers and hot dogs from the supermarket, on soft white buns</li>
+        <li>Ketchup and yellow mustard in squeeze bottles</li>
+        <li>Potato chips from a bag</li>
+        <li>A lime gelatin ring with canned fruit cocktail set inside</li>
+        <li>Deviled eggs with paprika</li>
+        <li>Cola in glass bottles, kept cold in a metal cooler</li>
+      </ul></div>
+      <div style="display:grid;gap:6px"><h3 style="color:var(--fut)">Someday</h3><ul class="menu">
+        <li>Bread from the clay oven, baked that morning</li>
+        <li>Tomatoes, greens and beans from four backyard gardens</li>
+        <li>Sheep's-milk cheese from the flock</li>
+        <li>Honey from the hives where the driveway was</li>
+        <li>Squash and corn roasted in the oven's embers</li>
+        <li>Cider from the root cellar, on plates and cups the potter made</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section class="bench" aria-labelledby="hCount">
+    <header><h2 id="hCount">Be counted</h2><span class="eyebrow">two separate doors, never joined</span></header>
+    <div class="two">
+      <div style="display:grid;gap:10px;min-width:0;align-content:start">
+        <h3>1 · Tell us which barbecue you'd rather be at, anonymously</h3>
+        <label class="ask" for="ct_keep">What should keep the grass on your block?
+          <select id="ct_keep">
+            <option value="mower">The mower, same as now</option>
+            <option value="mix">Some lawn, some garden</option>
+            <option value="graze" selected>Animals: sheep, goats, maybe bison</option>
+            <option value="thicket">Nobody: let it grow like the Thicket</option>
+          </select></label>
+        <label class="ask" for="ct_role">On the someday block, what would you do?
+          <select id="ct_role">
+            <option value="unsure" selected>Not sure yet</option>
+            <option value="baker">Bake</option><option value="gardener">Garden</option><option value="herder">Herd the flock or the bison</option>
+            <option value="pitmaster">Run the barbacoa pit</option><option value="musician">Play in the band</option>
+            <option value="spinner_weaver">Spin or weave</option><option value="potter">Make pottery</option><option value="beekeeper">Keep bees</option>
+            <option value="wheelwright">Fix wheels and bikes</option><option value="teacher">Teach the kids</option><option value="other">Something else</option>
+          </select></label>
+        <label class="ask" for="ct_join">Would you join a block like the someday one?
+          <select id="ct_join">
+            <option value="yes">Yes, tomorrow</option><option value="maybe" selected>Maybe, if it worked</option><option value="no">No, I like my lawn</option>
+          </select></label>
+        <p class="note">Opens a short form with no name or email field. It carries over only these three answers and a few things about how you used this page (where you left the divider, which scene and season, who you clicked on, whether you turned the sound on). You can add your region if you like. "I like my lawn" counts just as much as "yes, tomorrow". Only totals are ever published, such as "40% would let the animals keep the grass".</p>
+        <div class="wide"><table class="sum" id="ctSummary"></table></div>
+        <div class="btns"><a class="btn go" id="ctForm" target="_blank" rel="noopener">Share my answers anonymously</a><span class="eyebrow" id="ctFormMsg"></span></div>
+      </div>
+      <div style="display:grid;gap:10px;min-width:0;align-content:start">
+        <h3>2 · Get updates from the lab</h3>
+        <p class="note">A separate mailing list for news when this page improves and when the lab's next app comes out. Your email is used only for these updates, is never linked to your answers in the form, and you can unsubscribe any time.</p>
+        <div class="btns"><a class="btn" id="ctNews" target="_blank" rel="noopener">Sign up for updates</a><span class="eyebrow" id="ctNewsMsg"></span></div>
+        <p class="note"><a href="https://songbird-soundscape.github.io/two-stroke-morning/tip/" target="_blank" rel="noopener">Tip the lab</a></p>
+        <p class="note"><b>Our promise.</b> The form collects no names, emails or exact locations, and only totals are shared. The mailing list keeps only what it needs to send updates. The two are kept apart and never matched.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bench" aria-labelledby="hReal">
+    <header><h2 id="hReal">What's real in the 1957 half</h2><span class="eyebrow">the details aren't made up</span></header>
+    <ul class="refs">
+      <li><b>Duck and cover.</b> A 1951 civil-defence film made for the US Federal Civil Defense Administration and shown in schools, alongside classroom drills.</li>
+      <li><b>The triangles on the radio dial.</b> Radios sold in the US from 1953 to 1963 marked 640 and 1240 kHz with small triangles: the CONELRAD frequencies to tune to in an air raid.</li>
+      <li><b>Television.</b> About 9% of US homes had a TV in 1950 and about 87% by 1960 (Nielsen figures, as compiled by the Television Bureau of Advertising).</li>
+      <li><b>Fallout shelters.</b> Civil-defence plans for home shelters circulated through the 1950s; the big national push came in 1961.</li>
+      <li><b>The kit.</b> The kettle charcoal grill appeared in 1952, the frozen TV dinner in 1953, the pocket transistor radio in 1954, coonskin caps swept the playgrounds in 1955, and the plastic pink flamingo landed on lawns in 1957.</li>
+      <li><b>Who got the houses.</b> The Federal Housing Administration's underwriting manual steered loans away from mixed neighbourhoods, and the first big postwar suburbs wrote whites-only clauses into their leases and deeds. The Supreme Court made those clauses unenforceable in 1948, but builders and lenders kept the pattern for years.</li>
+      <li><b>Town flocks.</b> Several European cities, Paris among them, now hire sheep to graze parks and verges instead of mowing them.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>A small, playful science and history page. Everything runs in this one file.</span>
+    <a href="https://songbird-soundscape.github.io/two-stroke-morning/" target="_blank" rel="noopener">More from the lab: Two-Stroke Morning</a>
+  </footer>
+</div>
+
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const reduceMotion = (() => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } })();
+const tok = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const hash = n => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
+
+// ================= theme =================
+const THEMES = ['auto', 'light', 'dark'];
+let themeI = 0;
+try { const s = localStorage.getItem('bbq-theme'); if (THEMES.includes(s)) themeI = THEMES.indexOf(s); } catch (e) {}
+function applyTheme() { const t = THEMES[themeI]; if (t === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', t); $('themeBtn').textContent = 'Theme: ' + t; }
+$('themeBtn').onclick = () => { themeI = (themeI + 1) % 3; applyTheme(); try { localStorage.setItem('bbq-theme', THEMES[themeI]); } catch (e) {} };
+applyTheme();
+
+// ================= pixel canvases =================
+const PW = 240, PH = 100, GROUND = 48;
+const mk = () => { const c = document.createElement('canvas'); c.width = PW; c.height = PH; return c; };
+const offP = mk(), offF = mk(), ogP = offP.getContext('2d'), ogF = offF.getContext('2d');
+let G = ogP;
+const px = (x, y, c, w = 1, h = 1) => { if (w <= 0 || h <= 0) return; G.fillStyle = c; G.fillRect(Math.round(x), Math.round(y), Math.max(1, Math.round(w)), Math.max(1, Math.round(h))); };
+const hex2 = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const mix = (a, b, t) => { const A = hex2(a), B = hex2(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
+function blob(cx, cy, rx, ry, col) { for (let y = -ry; y <= ry; y++) for (let x = -rx; x <= rx; x++) { const e = (x * x) / (rx * rx) + (y * y) / (ry * ry); if (e > 1) continue; const c = typeof col === 'function' ? col(x, y, e) : col; if (c) px(cx + x, cy + y, c); } }
+function sky(c1, c2, bot) { for (let y = 0; y < bot; y += 3) px(0, y, mix(c1, c2, y / bot), PW, 3); }
+
+let SCENE = 'block', FUT = 0.5, T = 0, playing = !reduceMotion, SEASON = 1, DUSK = 0, DUSK_TARGET = 0, CAPS = true, SEL = null;
+
+// a person, feet at yf; returns where the leading hand is
+function person(x, yf, o) {
+  const kid = !!o.kid, bw = kid ? 5 : 7, legH = kid ? 4 : 6, bodyH = kid ? 5 : 7, L = !!o.left;
+  const st = o.walk ? Math.floor(o.f || 0) % 2 : 0, yb = yf - legH - bodyH, yh = yb - 5, hx = x + (bw - 5) / 2;
+  const shoe = o.shoes || '#2a2420', sl = o.sleeve || o.shirt;
+  if (o.sit) {
+    const d = L ? -1 : 1, kx = L ? x - 2 : x + 1;
+    px(kx, yf - legH, o.pants, bw + 1, 2); px(L ? x - 2 : x + bw, yf - legH + 2, o.pants, 2, legH - 3); px(L ? x - 3 : x + bw, yf - 1, shoe, 3, 1);
+  } else if (o.skirt) {
+    px(x - 1, yb + bodyH, o.skirt, bw + 2, 3); const lh = Math.max(0, legH - 4);
+    if (lh) { px(x + 1, yf - 1 - lh, o.skin, 1, lh); px(x + bw - 2, yf - 1 - lh, o.skin, 1, lh); }
+    px(x + 1, yf - 1, shoe, 2, 1); px(x + bw - 3, yf - 1, shoe, 2, 1);
+  } else {
+    px(x + 1, yf - legH, o.pants, 2, legH - st); px(x + bw - 3, yf - legH, o.pants, 2, legH - 1 + st);
+    px(x + 1, yf - 1 - st, shoe, 2, 1); px(x + bw - 3, yf - 2 + st, shoe, 2, 1);
+  }
+  px(x, yb, o.shirt, bw, bodyH);
+  if (o.stripe) for (let k = 1; k < bodyH; k += 2) px(x, yb + k, o.stripe, bw, 1);
+  if (o.apron) px(x + 1, yb + 2, o.apron, bw - 2, bodyH + (o.skirt ? 2 : 1));
+  // arms
+  const back = L ? x + bw : x - 1, front = L ? x - 1 : x + bw, dir = L ? -1 : 1;
+  let hand = [front, yb + 5];
+  const arm = o.arm || 'down';
+  if (arm !== 'none') { px(back, yb + 1, sl, 1, 4); px(back, yb + 5, o.skin); }
+  if (arm === 'down') { px(front, yb + 1, sl, 1, 4); px(front, yb + 5, o.skin); }
+  else if (arm === 'out') { px(L ? front - 2 : front, yb + 2, sl, 3, 1); hand = [front + dir * 3, yb + 2]; px(hand[0], hand[1], o.skin); }
+  else if (arm === 'carry') { px(L ? front - 1 : front, yb + 3, sl, 2, 1); hand = [front + dir * 2, yb + 3]; px(hand[0], hand[1], o.skin); }
+  else if (arm === 'up') { px(front, yb - 3, sl, 1, 4); hand = [front, yb - 4]; px(hand[0], hand[1], o.skin); }
+  else if (arm === 'lap') { px(L ? front - 2 : front, yb + 4, sl, 3, 1); hand = [front + dir * 2, yb + 4]; px(hand[0], hand[1], o.skin); }
+  // head
+  px(hx, yh, o.skin, 5, 5);
+  px(hx + (L ? 1 : 3), yh + 2, '#231c18');
+  if (o.smile !== false) px(hx + (L ? 1 : 2), yh + 4, mix(o.skin, '#7a2e2e', 0.45), 2, 1);
+  const hb = L ? hx + 4 : hx, hair = o.hair || '#3b2a20';
+  switch (o.hs) {
+    case 'short': px(hx, yh, hair, 5, 1); px(hb, yh + 1, hair, 1, 2); break;
+    case 'bob': px(hx, yh, hair, 5, 2); px(hb, yh, hair, 1, 4); break;
+    case 'long': px(hx, yh, hair, 5, 2); px(hb, yh, hair, 1, 7); px(L ? hb + 1 : hb - 1, yh + 1, hair, 1, 6); break;
+    case 'bun': px(hx, yh, hair, 5, 1); px(hb, yh + 1, hair, 1, 2); px(L ? hb : hb - 1, yh - 2, hair, 2, 2); break;
+    case 'curly': px(hx - 1, yh - 1, hair, 7, 2); px(hb, yh + 1, hair, 1, 3); px(L ? hb + 1 : hb - 1, yh, hair, 1, 3); break;
+    case 'pony': px(hx, yh, hair, 5, 1); px(L ? hb + 1 : hb - 1, yh + 1, hair, 1, 4); break;
+    case 'bald': px(hb, yh + 1, hair, 1, 2); break;
+  }
+  const hc = o.hatC || '#5a4a3a';
+  switch (o.hat) {
+    case 'chef': px(hx, yh - 3, '#ffffff', 5, 3); px(hx - 1, yh - 6, '#ffffff', 7, 3); px(hx, yh - 1, '#e6e6e6', 5, 1); break;
+    case 'fedora': px(hx - 1, yh, hc, 7, 1); px(hx, yh - 2, hc, 5, 2); px(hx, yh - 1, '#2a2420', 5, 1); break;
+    case 'straw': px(hx - 2, yh, '#d9b65a', 9, 1); px(hx, yh - 2, '#e5c76b', 5, 2); px(hx, yh - 1, '#9b6b3a', 5, 1); break;
+    case 'cap': px(hx, yh - 1, hc, 5, 2); px(L ? hx - 2 : hx + 4, yh, hc, 3, 1); break;
+    case 'coon': px(hx, yh - 1, '#8a5a30', 5, 2); for (let k = 0; k < 5; k++) px(L ? hx + 5 : hx - 1, yh + k, k % 2 ? '#3a2414' : '#8a5a30'); break;
+    case 'veil': px(hx - 1, yh - 2, '#f4f1ea', 7, 2); G.globalAlpha = 0.55; px(hx - 1, yh, '#e8e6dc', 7, 6); G.globalAlpha = 1; break;
+    case 'kerchief': px(hx, yh, hc, 5, 2); px(hb + (L ? 1 : -1), yh + 1, hc, 1, 2); break;
+    case 'tejana': { const tc = o.hatC || '#e8d9b0'; px(hx - 2, yh, tc, 9, 1); px(hx, yh - 2, tc, 5, 2); px(hx + 1, yh - 3, tc, 3, 1); px(hx, yh - 1, mix(tc, '#000000', 0.35), 5, 1); break; }
+    case 'beanie': px(hx, yh - 1, hc, 5, 2); px(hx + 2, yh - 2, hc); break;
+  }
+  return { hand, yh, yb };
+}
+
+// sheep from Two-Stroke Morning's pasture, plus a collie and a hen
+function sheep(x, y, f, g, wool) {
+  const st = Math.floor(f) % 2, Wl = wool || '#ece6d6', K = '#222';
+  px(x + 2, y + 12, K, 1, 4 - st); px(x + 4, y + 12, K, 1, 3 + st); px(x + 8, y + 12, K, 1, 3 + st); px(x + 10, y + 12, K, 1, 4 - st);
+  px(x, y + 6, Wl, 12, 6); px(x + 1, y + 5, Wl, 10, 1); px(x + 2, y + 4, Wl, 3, 1); px(x + 7, y + 4, Wl, 3, 1); px(x + 3, y + 8, '#d6cfbd', 2, 1); px(x + 8, y + 7, '#d6cfbd', 2, 1);
+  const hy = g ? y + 10 : y + 5; px(x + 12, hy, K, 3, 4); px(x + 11, hy, K, 1, 1);
+}
+function collie(x, y, f) {
+  const st = Math.floor(f * 2) % 2;
+  px(x + 1, y + 5, '#111', 1, 3 - st); px(x + 7, y + 5, '#111', 1, 2 + st);
+  px(x, y + 2, '#1c1c1c', 9, 4); px(x + 3, y + 3, '#f4f1ea', 3, 3);
+  px(x + 8, y, '#1c1c1c', 3, 3); px(x + 10, y + 1, '#f4f1ea', 2, 2); px(x + 8, y - 1, '#1c1c1c'); px(x - 2, y + 1, '#1c1c1c', 2, 1); px(x - 3, y, '#f4f1ea');
+}
+function hen(x, y, f, peck, R = '#a0522d') {
+  px(x + 1, y + 14, '#e8a33c', 1, 2); px(x + 3, y + 14, '#e8a33c', 1, 2);
+  px(x, y + 10, R, 5, 4); px(x - 1, y + 9, mix(R, '#000000', 0.4), 2, 2);
+  const hy = peck ? y + 12 : y + 8; px(x + 4, hy, R, 2, 3); px(x + 4, hy - 1, '#e03131', 2, 1); px(x + 6, hy + 1, '#e8a33c'); px(x + 5, hy + 1, '#111');
+}
+
+// shared house shape: same lots, same frames, both eras
+const HX = [4, 92, 178], HW = 56, WY = 28;
+function house(x, o) {
+  px(x, WY, o.wall, HW, 20); px(x, WY + 18, o.base, HW, 2);
+  for (let k = 0; k < 12; k++) px(x - 2 + k * 2.4, WY - 1 - k, k === 0 ? o.eave : o.roof, HW + 4 - k * 4.8, 1);
+  px(x + 7, WY + 8, o.door, 6, 12); px(x + 11, WY + 14, '#e8d27a'); px(x + 6, WY + 7, o.trim, 8, 1);
+  [x + 20, x + 38].forEach((wx, i) => { if (o.skipWin === i) return; px(wx - 1, WY + 4, o.trim, 12, 10); px(wx, WY + 5, o.glass, 10, 8); px(wx + 1, WY + 6, mix(o.glass, '#ffffff', 0.35), 2, 1); px(wx + 5, WY + 5, o.trim, 1, 8); px(wx, WY + 9, o.trim, 10, 1); });
+}
+
+// ================= 1957 =================
+const PAST = { sky1: '#5fb2e6', sky2: '#c6e8f7', lawnA: '#5db84e', lawnB: '#51aa44', walk: '#d8d4c8', curb: '#b9b4a6', road: '#45484d', line: '#f4e9b8', drive: '#d2cdbf',
+  walls: ['#bfe6cf', '#f5c9d4', '#f6e7a6'], doors: ['#c92a2a', '#1c7ed6', '#2b8a3e'], skinP: ['#f1c7a5', '#e9b893', '#f3cfb2', '#e2ac84'] };
+let siren = 0;                                             // 0..1 while the noon test is wailing
+function sirenOn(t) { const c = t % 44; return c > 26 && c < 35 ? Math.sin(Math.PI * (c - 26) / 9) : 0; }
+function drawPast(t) {
+  G = ogP; const S = PAST;
+  sky(S.sky1, S.sky2, GROUND);
+  if (DUSK_TARGET < 0.5) { px(22, 6, '#ffe57a', 7, 7); px(20, 8, '#ffe57a', 11, 3); px(24, 4, '#ffe57a', 3, 11); }
+  // a silver jet and its contrail, crossing every so often
+  const jx = ((t * 11) % 420) - 90;
+  for (let i = 1; i < 80; i++) { G.globalAlpha = 0.75 * (1 - i / 80); px(jx - i, 9 + (i > 40 ? 1 : 0), '#ffffff'); }
+  G.globalAlpha = 1; px(jx, 9, '#dde3ea', 8, 1); px(jx + 2, 8, '#dde3ea', 4, 1); px(jx + 3, 10, '#aab3bd', 3, 1); px(jx, 7, '#dde3ea', 1, 2); px(jx + 8, 9, '#aab3bd');
+  // the rest of the subdivision: the same roof, over and over
+  for (let x = -4; x < PW; x += 13) { px(x, 27, '#c9d4dc', 10, 4); px(x + 1, 26, '#93a1ad', 8, 1); px(x + 3, 25, '#93a1ad', 4, 1); px(x + 4, 28, '#9fb3c3', 2, 2); }
+  // power line along the back
+  for (let x = 0; x < PW; x++) { const u = (x % 88) / 88; px(x, 15 + Math.round(10 * u * (1 - u)), '#2e3236'); }
+  // ground: striped lawn
+  for (let x = 0; x < PW; x += 8) px(x, GROUND, (x / 8) % 2 ? S.lawnA : S.lawnB, 8, 84 - GROUND);
+  px(182, GROUND, S.drive, 48, 36); for (let y = GROUND + 8; y < 84; y += 9) px(182, y, '#bdb8aa', 48, 1);   // driveway
+  // houses: three pastels from the same plan, each with an aerial
+  HX.forEach((x, i) => {
+    house(x, { wall: S.walls[i], base: mix(S.walls[i], '#000000', 0.15), roof: '#6c7882', eave: '#59646d', door: S.doors[i], trim: '#ffffff', glass: '#4a6f8f', skipWin: i === 1 ? 0 : -1 });
+    const ax = x + 30; px(ax, 8, '#3a3f44', 1, 10); px(ax - 4, 9, '#3a3f44', 9, 1); px(ax - 3, 11, '#3a3f44', 7, 1); px(ax - 2, 13, '#3a3f44', 5, 1);
+    px(x + 20 - 3, WY + 4, mix(S.doors[i], '#ffffff', 0.25), 2, 10); px(x + 50, WY + 4, mix(S.doors[i], '#ffffff', 0.25), 2, 10);   // shutters
+    for (let k = 0; k < 6; k++) px(x + 2 + k * 3, 46, '#4f8f3a', 2, 2);                       // a clipped foundation hedge
+  });
+  // the TV in the picture window: a western on a twelve-inch screen
+  { const wx = 112; px(wx - 1, WY + 4, '#ffffff', 12, 10); px(wx, WY + 5, '#1d2733', 10, 8);
+    px(wx + 2, WY + 7, '#6b4a2e', 7, 6); const fl = Math.floor(t * 7) % 3; px(wx + 3, WY + 8, ['#a8c4d8', '#bcd2e2', '#9bb8cc'][fl], 4, 3);
+    px(wx + 3 + (Math.floor(t * 2) % 3), WY + 9, '#3a3a3a', 1, 1); px(wx + 7, WY + 8, '#333', 1, 1); px(wx + 4, WY + 6, '#333'); px(wx + 6, WY + 5, '#333');
+    px(wx + 3, WY + 12, '#3a2a20', 3, 1); }
+  // staked saplings: a new subdivision has no big trees yet
+  [[64, 0], [158, 1], [236, 2]].forEach(([x]) => { px(x, 38, '#7a5a3a', 1, 10); px(x + 2, 40, '#c8b48a', 1, 8); px(x, 42, '#c8b48a', 3, 1); blob(x, 36, 3, 3, (a, b) => (a + b) % 3 ? '#5aa04a' : '#4a8f3d'); });
+  // civil-defence siren on its pole
+  siren = sirenOn(t);
+  px(72, 12, '#7a6a55', 2, 38); px(68, 9, '#b8bec4', 10, 4); px(67, 10, '#7e868e', 1, 2); px(78, 10, '#7e868e', 1, 2); px(72, 7, '#d0d5da', 2, 2);
+  px(70, 30, '#1c4fa0', 6, 6); px(72, 31, '#ffffff', 2, 1); px(71, 32, '#ffffff', 4, 1); px(72, 33, '#d42a2a', 2, 1);   // CD triangle badge
+  // backyard fallout shelter: hatch, vent and a sign
+  px(36, 52, '#a9a59a', 18, 6); px(37, 51, '#bdb9ad', 16, 1); px(42, 53, '#7e7a70', 6, 3); px(44, 54, '#5a564e', 2, 1); px(56, 47, '#8a8a8a', 1, 8); px(55, 46, '#8a8a8a', 3, 1);
+  px(32, 49, '#7a5a3a', 1, 6); px(30, 45, '#f2c21b', 5, 5); px(32, 46, '#222', 1, 3); px(31, 47, '#222', 3, 1);
+  // lawn sprinkler, ticking back and forth
+  { const a = Math.sin(t * 1.3) * 1.1; px(24, 72, '#9a9a9a', 3, 1); px(25, 71, '#777777');
+    G.globalAlpha = 0.18; blob(25, 72, 8, 3, '#2f7a32'); G.globalAlpha = 1;
+    for (let i = 1; i < 12; i++) { const dx = Math.sin(a) * i * 1.3, dy = -i * 1.1 + 0.09 * i * i; G.globalAlpha = 0.85 - i * 0.05; px(25 + dx, 71 + dy, '#d6efff'); if (i % 3 === 0) px(25 + dx * 1.05 + 1, 71 + dy + 1, '#ffffff'); }
+    G.globalAlpha = 1; }
+  // pink flamingos, new this year
+  [[52, 0], [58, 1]].forEach(([x, k]) => { const bob = Math.floor(t * 0.7 + k) % 4 === 0 ? 1 : 0;
+    px(x + 1, 74, '#d06a95', 1, 6); px(x + 3, 75, '#d06a95', 1, 5); px(x, 70, '#ff7eb6', 5, 4); px(x - 1, 71, '#f05a9a', 1, 2);
+    px(x + 4, 66 + bob, '#ff7eb6', 1, 4); px(x + 4, 65 + bob, '#ff7eb6', 2, 2); px(x + 6, 66 + bob, '#222'); px(x + 5, 65 + bob, '#222'); });
+  // the power mower, back and forth in stripes
+  { const ph = t * 0.22, mx = 6 + 22 * (0.5 + 0.5 * Math.sin(ph)), L = Math.cos(ph) < 0, yf = 66;
+    person(mx, yf, { skin: S.skinP[1], shirt: '#ffffff', stripe: null, pants: '#6b7a8f', hs: 'short', hair: '#6b5a48', hat: 'cap', hatC: '#1c4fa0', arm: 'out', walk: true, f: t * 3, left: L });
+    const dx = L ? -9 : 10; px(mx + dx, yf - 3, '#c0392b', 6, 3); px(mx + dx + 1, yf - 1, '#111', 1, 1); px(mx + dx + 4, yf - 1, '#111', 1, 1);
+    px(L ? mx - 4 : mx + 8, yf - 8, '#555', 1, 1); px(L ? mx - 5 : mx + 9, yf - 7, '#555', 1, 2); px(L ? mx - 6 : mx + 10, yf - 5, '#555', 1, 2);
+    if (playing && Math.floor(t * 6) % 2) px(mx + dx + (L ? 6 : -1), yf - 2, '#9a9a9a'); }
+  // tiki torches: the backyard Polynesian craze
+  [92, 140].forEach((x, k) => { px(x, 46, '#b08a52', 1, 16); px(x - 1, 44, '#6b4a2e', 3, 3);
+    const fl = Math.floor(t * 8 + k) % 3; px(x - 1 + (fl === 1 ? 1 : 0), 41, '#ff9a3c', 2 + (fl === 2 ? 1 : 0), 3); px(x, 40 - (fl === 0 ? 1 : 0), '#ffd27a', 1, 2); });
+  // the kettle grill, with a lighter-fluid flare now and then
+  { px(80, 64, '#2a2a2a', 1, 5); px(88, 64, '#2a2a2a', 1, 5); px(84, 64, '#2a2a2a', 1, 4); px(80, 68, '#2a2a2a', 9, 1);
+    px(79, 60, '#1a1a1a', 11, 3); px(80, 63, '#1a1a1a', 9, 1); px(91, 54, '#1a1a1a', 2, 7); px(90, 54, '#3a3a3a', 1, 6);   // bowl, lid hung on the side
+    px(80, 59, '#888888', 9, 1); px(81, 58, '#c4553a', 3, 1); px(85, 58, '#c4553a', 3, 1); px(82, 57, '#7a3b20', 4, 1);
+    const flare = (Math.sin(t * 0.9) > 0.93) ? 1 : 0;
+    if (flare) { for (let k = 0; k < 8; k++) px(80 + k, 56 - (hash(k + Math.floor(t * 9)) * 7), k % 2 ? '#ffd27a' : '#ff7a1a', 1, 3); }
+    for (let k = 0; k < 6; k++) { const s = (t * 0.6 + k / 6) % 1; G.globalAlpha = 0.5 * (1 - s); px(84 + Math.sin(s * 7 + k) * 2 + s * 6, 56 - s * 22, '#d8d8d8', 2, 2); }
+    G.globalAlpha = 1; }
+  // the grill cook
+  { const r = person(70, 68, { skin: S.skinP[0], shirt: '#f2e3c4', pants: '#4a5468', apron: '#ffffff', hs: 'short', hair: '#5a3a24', hat: 'chef', arm: 'out' });
+    px(r.hand[0] + 1, r.hand[1], '#9a9a9a', 3, 1); px(r.hand[0] + 4, r.hand[1] - 1, '#c8c8c8', 2, 2); }
+  // the table: checked cloth and the 1957 spread
+  { for (let i = 0; i < 42; i++) { px(95 + i, 62, (i >> 1) % 2 ? '#d63a3a' : '#ffffff'); px(95 + i, 63, (i >> 1) % 2 ? '#ffffff' : '#d63a3a'); }
+    px(95, 64, '#d63a3a', 2, 3); px(135, 64, '#ffffff', 2, 3); px(98, 64, '#9a9a9a', 1, 6); px(133, 64, '#9a9a9a', 1, 6);
+    px(99, 59, '#d42a2a', 2, 3); px(99, 58, '#ffffff'); px(102, 59, '#f2c21b', 2, 3); px(102, 58, '#ffffff');           // ketchup, mustard
+    px(106, 60, '#ffffff', 7, 2); px(107, 59, '#e8b98a', 5, 1); px(107, 60, '#c4553a', 5, 1);                           // hot dogs in buns
+    px(115, 57, '#e8b021', 5, 5); px(115, 59, '#d42a2a', 5, 1); px(116, 56, '#e8b021', 3, 1);                           // bag of chips
+    [122, 124, 126].forEach(x => { px(x, 57, '#3a1f12', 1, 5); px(x, 56, '#d8d8d8'); });                                // cola
+    px(129, 61, '#ffffff', 6, 1); [129, 131, 133].forEach(x => { px(x, 60, '#ffffff', 2, 1); px(x, 60, '#f2a32b'); });   // deviled eggs
+  }
+  // the gelatin ring, wobbling
+  { const r = person(140, 72, { skin: S.skinP[2], shirt: '#8fd0e8', skirt: '#8fd0e8', apron: '#ffffff', hs: 'bob', hair: '#c8962e', arm: 'carry', left: true });
+    const wob = Math.round(Math.sin(t * 9) * 0.6), x0 = r.hand[0] - 5, y0 = r.hand[1];
+    px(x0 - 1, y0, '#ffffff', 8, 1); px(x0 - wob, y0 - 3, '#86d957', 6 + wob * 2, 3); px(x0 + 1, y0 - 4, '#9be36c', 4, 1); px(x0 + 1, y0 - 2, '#ff6b4a'); px(x0 + 4, y0 - 3, '#ffd23a'); px(x0 + 2, y0 - 3, '#ffffff'); }
+  // cooler with a transistor radio on it
+  { px(148, 74, '#c92a2a', 10, 7); px(148, 73, '#e8e8e8', 10, 1); px(150, 76, '#e8e8e8', 6, 1); px(147, 75, '#9a9a9a', 1, 2); px(158, 75, '#9a9a9a', 1, 2);
+    px(150, 69, '#3a7bd5', 6, 4); px(151, 70, '#e8e8e8', 2, 2); px(154, 70, '#c8c8c8', 1, 2); px(155, 67, '#9a9a9a', 1, 2); }
+  // evening paper in a webbed lawn chair
+  { px(163, 64, '#bfc6cc', 1, 12); px(172, 70, '#bfc6cc', 1, 6); for (let k = 0; k < 6; k++) px(163 + (k % 2), 64 + k * 2, k % 2 ? '#2b8a3e' : '#ffffff', 2, 1);
+    person(164, 76, { skin: S.skinP[3], shirt: '#d6e4f0', pants: '#8a7a5a', hs: 'bald', hair: '#8a7a6a', sit: true, arm: 'lap', smile: false });
+    const ry = 62 + (Math.floor(t * 0.5) % 7 === 0 ? 1 : 0); px(168, ry, '#f2efe6', 7, 7); px(169, ry + 1, '#222', 5, 1); for (let k = 3; k < 7; k += 2) px(169, ry + k, '#a8a8a8', 5, 1); }
+  // a new two-tone sedan with fins, being waxed
+  { const cx = 186, cy = 68;
+    px(cx + 6, cy, '#f4f1e8', 20, 4); px(cx + 8, cy + 1, '#a8d8ec', 7, 3); px(cx + 17, cy + 1, '#a8d8ec', 7, 3);         // roof, windows
+    px(cx, cy + 4, '#3fb8af', 40, 6); px(cx, cy + 6, '#e8e8e8', 40, 1); px(cx + 36, cy + 1, '#3fb8af', 4, 3); px(cx + 38, cy, '#3fb8af', 2, 1);   // body, chrome strip, fin
+    px(cx - 1, cy + 8, '#e8e8e8', 42, 2); px(cx - 1, cy + 5, '#fff6c8', 2, 2); px(cx + 39, cy + 4, '#e03131', 2, 2);
+    [cx + 5, cx + 30].forEach(wx => { px(wx, cy + 9, '#111111', 6, 5); px(wx + 1, cy + 10, '#f4f4f4', 4, 3); px(wx + 2, cy + 11, '#9a9a9a', 2, 1); });
+    const sh = Math.floor(t * 4) % 2; px(cx + 30 + sh * 2, cy + 3, '#ffffff', 1, 1);
+    const r = person(228, 82, { skin: S.skinP[1], shirt: '#f4f1e8', pants: '#3b4a5c', hs: 'short', hair: '#2a1d14', arm: 'out', left: true, sleeve: '#f4f1e8' });
+    px(r.hand[0] - 1 - sh, r.hand[1], '#f2d27a', 2, 2); }
+  // the schoolkid: chips by day, flat on the lawn when the siren tests
+  { const x = 120;
+    if (siren > 0.15) { px(x - 6, 80, '#d6336c', 7, 2); px(x - 6, 81, '#ffffff', 7, 1); px(x + 1, 80, '#3b5bdb', 5, 2); px(x + 6, 81, '#2a2420', 1, 1); px(x - 10, 79, PAST.skinP[2], 4, 3); px(x - 11, 78, '#8a5a30', 5, 2); px(x - 8, 77, PAST.skinP[2], 2, 1); }
+    else { const r = person(x, 82, { kid: true, skin: S.skinP[2], shirt: '#d6336c', stripe: '#ffffff', pants: '#3b5bdb', hs: 'short', hair: '#8a5a30', hat: 'coon', arm: 'out' });
+      px(r.hand[0], r.hand[1] - 1, '#e8b021', 2, 2); } }
+  // the paperboy on his route, tossing papers onto each lawn
+  { const cyc = (t * 15) % 330, bx = cyc - 40;
+    [34, 118, 206].forEach(tx => { const s0 = tx - 18 + 40, s = (cyc - s0) / 14;
+      if (s >= 1) px(tx, 82, '#f2efe6', 3, 1);
+      else if (s > 0) { const fx = tx - 18 + 18 * s, fy = 90 - 14 * Math.sin(Math.PI * s) - 8 * s; px(fx, fy, '#f2efe6', 2, 1); } });
+  }
+  // sidewalk and street (drawn last so the bike rides on it)
+  px(0, 84, S.walk, PW, 4); px(0, 84, S.curb, PW, 1); for (let x = 0; x < PW; x += 12) px(x, 84, '#a29e94', 1, 4);
+  px(0, 88, S.road, PW, 12); for (let x = 0; x < PW; x += 16) px(x, 93, S.line, 8, 1);
+  { const cyc = (t * 15) % 330, bx = cyc - 40, f = t * 6, w = Math.floor(f) % 2, by = 97;   // redraw the bike over the road
+    [bx, bx + 10].forEach(wx => { px(wx - 2, by - 4, '#1a1a1a', 5, 1); px(wx - 2, by, '#1a1a1a', 5, 1); px(wx - 3, by - 3, '#1a1a1a', 1, 3); px(wx + 2, by - 3, '#1a1a1a', 1, 3); px(wx + (w ? -1 : 1), by - 2, '#9a9a9a'); });
+    px(bx, by - 4, '#c92a2a', 10, 1); px(bx + 3, by - 6, '#c92a2a', 1, 2); px(bx + 9, by - 7, '#c92a2a', 1, 3); px(bx + 8, by - 8, '#555', 3, 1);
+    person(bx + 2, by - 3, { kid: true, skin: S.skinP[0], shirt: '#e8e2c8', pants: '#3b4a5c', hs: 'short', hair: '#c8962e', hat: 'cap', hatC: '#c92a2a', arm: 'out', walk: true, f });
+    px(bx - 1, by - 10, '#d8cfa8', 4, 4); px(bx - 1, by - 10, '#f2efe6', 4, 1); }
+  // siren rings
+  if (siren > 0) { G.strokeStyle = '#ffffff'; G.lineWidth = 1; for (let k = 0; k < 3; k++) { const r = ((t * 14 + k * 9) % 27) + 3; G.globalAlpha = siren * (1 - r / 30) * 0.8; G.beginPath(); G.arc(73, 10, r, 0, 2 * Math.PI); G.stroke(); } G.globalAlpha = 1; }
+  if (DUSK > 0) duskPast(t);
+}
+function moon(x) { G.globalAlpha = DUSK; px(x, 5, '#f4f1dc', 5, 5); px(x + 1, 4, '#f4f1dc', 3, 7); px(x - 1, 6, '#f4f1dc', 7, 3); px(x + 2, 5, '#d8d4bc', 2, 2); for (let k = 0; k < 14; k++) px(hash(k + 3) * PW, hash(k + 40) * 13, '#ffffff'); G.globalAlpha = 1; }
+function duskPast(t) {
+  G.globalAlpha = 0.55 * DUSK; px(0, 0, '#141a3a', PW, PH); G.globalAlpha = 1; moon(24);
+  const a = DUSK;
+  G.globalAlpha = a; px(112, WY + 5, '#1d2733', 10, 8); px(114, WY + 7, '#6b4a2e', 7, 6); px(115, WY + 8, Math.floor(t * 7) % 2 ? '#b8d6ff' : '#9cc4ff', 4, 3);
+  G.globalAlpha = 0.18 * a; blob(117, WY + 9, 9, 6, '#9cc4ff');
+  G.globalAlpha = a; [12, 194].forEach(x => px(x + 20, WY + 5, '#ffe9a8', 10, 8)); px(130, WY + 5, '#ffe9a8', 10, 8);
+  HX.forEach(x => { px(x + 14, WY + 9, '#ffe066', 2, 2); G.globalAlpha = 0.2 * a; blob(x + 15, WY + 10, 4, 3, '#ffe066'); G.globalAlpha = a; });   // porch lights
+  [92, 140].forEach((x, k) => { const fl = Math.floor(t * 8 + k) % 3; px(x - 1, 41, '#ff9a3c', 3, 3); px(x, 39 - (fl === 0 ? 1 : 0), '#ffd27a', 1, 3); G.globalAlpha = 0.22 * a; blob(x, 42, 7, 6, '#ffb347'); G.globalAlpha = a; });
+  px(80, 58, '#ff7a1a', 9, 1); G.globalAlpha = 0.25 * a; blob(84, 58, 6, 3, '#ff9a3c');
+  G.globalAlpha = 1;
+}
+
+// ================= someday =================
+const SEAS = [
+  { name: 'spring', grass: '#6aaa45', grass2: '#58963a', leaf: ['#7cbf5a', '#9bd16e'], bloom: '#f7b6d2', flowers: ['#f7b6d2', '#ffffff', '#f2c21b'] },
+  { name: 'summer', grass: '#5e9a3e', grass2: '#4d8733', leaf: ['#3f7f3a', '#5a9f43'], bloom: null, flowers: ['#b05fa8', '#f2c21b', '#ff8a1e', '#ffffff', '#4dabf7'] },
+  { name: 'autumn', grass: '#8a9a4a', grass2: '#7a8a3e', leaf: ['#d9822b', '#b84f1f', '#e0a030'], bloom: null, flowers: ['#d9822b', '#7a4b6b'] },
+  { name: 'winter', grass: '#c9d2cc', grass2: '#aab8b0', leaf: null, bloom: null, flowers: [] },
+];
+const SKINF = ['#f1c7a5', '#e0ac7d', '#c68a5a', '#8d5a3b', '#5e3a24', '#d9a27a'];
+function tree(cx, cy, r, t, trunkH) {
+  const S = SEAS[SEASON];
+  px(cx - 1, cy, '#6b4a2e', 3, trunkH); px(cx - 3, cy + 2, '#6b4a2e', 2, 1); px(cx + 2, cy + 1, '#6b4a2e', 2, 1);
+  if (!S.leaf) { for (let k = 0; k < 7; k++) { const a = -Math.PI / 2 + (k - 3) * 0.42; for (let q = 1; q < r; q++) px(cx + Math.cos(a) * q * 1.1, cy + Math.sin(a) * q * 0.9, '#6b4a2e'); px(cx + Math.cos(a) * r * 1.1, cy + Math.sin(a) * r * 0.9 - 1, '#f4f6f8'); } return; }
+  blob(cx, cy - r * 0.55, r, Math.round(r * 0.75), (x, y, e) => { const h = hash(x * 7 + y * 13 + cx); if (S.bloom && h > 0.82) return S.bloom; return h > 0.7 ? S.leaf[1] : (e > 0.7 && h > 0.4) ? mix(S.leaf[0], '#000000', 0.15) : (S.leaf[2] && h < 0.15 ? S.leaf[2] : S.leaf[0]); });
+}
+const DEMAND = { baker: [0.9, 0.9, 0.95, 0.95], gardener: [0.85, 1, 0.9, 0.3], spinner: [0.5, 0.3, 0.85, 0.9], weaver: [0.5, 0.35, 0.8, 0.95],
+  potter: [0.65, 0.7, 0.6, 0.3], beekeeper: [0.7, 0.9, 0.6, 0.2], fiddler: [0.55, 0.9, 0.85, 0.7], wheelwright: [0.8, 0.6, 0.3, 0.5] };
+const idle = k => DEMAND[k] && DEMAND[k][SEASON] < 0.4;
+function book(x, y) { px(x, y, '#7a2e2e', 3, 2); px(x + 1, y, '#f2efe6', 1, 2); }
+function drawFut(t) {
+  G = ogF; const S = SEAS[SEASON], winter = SEASON === 3;
+  sky(winter ? '#a9c4d8' : '#8ec5e6', winter ? '#e3ecf1' : '#dcefe6', GROUND);
+  if (DUSK_TARGET < 0.5) { px(214, 6, '#fff1a8', 7, 7); px(212, 8, '#fff1a8', 11, 3); px(216, 4, '#fff1a8', 3, 11); }
+  // clouds drifting
+  [[0, 8, 14], [130, 4, 10], [70, 14, 8]].forEach(([o, y, w]) => { const x = ((t * 2 + o) % 300) - 40; px(x, y, '#ffffff', w, 2); px(x + 2, y - 1, '#ffffff', w - 5, 1); px(x + 3, y + 2, '#eef4f7', w - 4, 1); });
+  // geese, in a V, now and then (not in winter: they've gone south)
+  if (!winter) { const gx = ((t * 9) % 420) - 60; for (let k = -3; k <= 3; k++) { const x = gx - Math.abs(k) * 4, y = 12 + k * 2, fl = Math.floor(t * 4 + k) % 2; px(x, y, '#3a3a3a', 2, 1); px(x + 2, y, '#ffffff'); px(x + (fl ? -1 : 0), y - fl, '#3a3a3a'); } }
+  // big old trees behind the houses: fifty years of growing
+  [[30, 24, 16], [76, 20, 14], [124, 22, 16], [168, 22, 14], [214, 24, 15]].forEach(([x, y, r]) => tree(x, y, r, t, 14));
+  [[151, 0], [160, 1], [169, 0]].forEach(([x, k]) => miniBison(x + Math.round(Math.sin(t * 0.1 + k) * 2), 41 + k, Math.floor(t * 0.5 + k) % 3 !== 0));   // the commons herd, past the last house
+  // ground: meadow with tufts and flowers, not a lawn
+  px(0, GROUND, S.grass, PW, 84 - GROUND);
+  for (let x = 0; x < PW; x += 2) for (let y = GROUND + 2; y < 84; y += 4) { const h = hash(x * 3.1 + y * 7.7); if (h > 0.55) px(x + (h * 3 | 0) % 2, y, S.grass2, 1, 2); if (h > 0.93 && S.flowers.length) px(x, y - 1, S.flowers[(h * 100 | 0) % S.flowers.length]); }
+  if (winter) for (let x = 0; x < PW; x += 3) { const h = hash(x * 5.3); if (h > 0.4) px(x, GROUND + (h * 34 | 0), '#ffffff', 2, 1); }
+  // houses, the same frames: limewash, sod and clay roofs, vines, rain barrels, window boxes
+  const walls = ['#ece0c4', '#dcc3a0', '#e8d4b8'];
+  HX.forEach((x, i) => {
+    house(x, { wall: walls[i], base: mix(walls[i], '#000000', 0.18), roof: i === 1 ? '#b5653a' : '#6f9a45', eave: i === 1 ? '#8a4a2a' : '#4f7a35', door: '#8a5a2e', trim: '#f4ead2', glass: '#4f6e78', skipWin: i === 1 ? 0 : -1 });
+    if (i !== 1) for (let k = 1; k < 12; k++) { const w = HW + 4 - k * 4.8, sx = x - 2 + k * 2.4; for (let q = 0; q < w; q += 3) { const h = hash(q * 1.7 + k * 9 + i); if (h > 0.75 && S.flowers.length) px(sx + q, WY - 1 - k, S.flowers[(h * 50 | 0) % S.flowers.length]); else if (h > 0.55) px(sx + q, WY - 1 - k, '#5a8a3a'); } }
+    if (winter) for (let k = 1; k < 12; k++) px(x - 2 + k * 2.4, WY - 1 - k, '#f4f6f8', HW + 4 - k * 4.8, 1);
+    for (let v = 0; v < 4; v++) { const vx = x + [1, 16, 34, 53][v], vh = 6 + (hash(v + i * 4) * 12 | 0); if (S.leaf) for (let y = 0; y < vh; y++) px(vx + (y % 3 === 0 ? 1 : 0), WY + 19 - y, (y + v) % 3 ? S.leaf[0] : S.leaf[1]); }
+    px(x + 38, WY + 14, '#8a5a2e', 12, 2); if (S.flowers.length) for (let k = 0; k < 6; k++) px(x + 38 + k * 2, WY + 13, S.flowers[k % S.flowers.length]);   // window box
+    px(x + HW - 4, WY + 12, '#7a5030', 4, 8); px(x + HW - 4, WY + 14, '#5a3a20', 4, 1); px(x + HW - 4, WY + 17, '#5a3a20', 4, 1);   // rain barrel
+    px(x + 44, WY - 10, '#9a6a4a', 3, 5); for (let k = 0; k < 4; k++) { const s = (t * 0.3 + k / 4 + i * 0.3) % 1; G.globalAlpha = 0.35 * (1 - s); px(x + 45 + s * 6, WY - 12 - s * 14, '#e8e8e8', 2, 1); } G.globalAlpha = 1;   // chimney
+  });
+  // the weaver at the loom, through the old TV window
+  { const wx = 112; px(wx - 1, WY + 4, '#f4ead2', 12, 10); px(wx, WY + 5, '#3a3428', 10, 8);
+    px(wx + 1, WY + 6, '#8a5a2e', 1, 7); px(wx + 7, WY + 6, '#8a5a2e', 1, 7); px(wx + 1, WY + 6, '#8a5a2e', 7, 1);
+    for (let k = 2; k < 7; k++) px(wx + k, WY + 7, ['#c92a2a', '#f2c21b', '#2b8a3e', '#1c7ed6', '#e8e2c8'][k - 2], 1, 4);
+    const sh = Math.round(Math.sin(t * 2) * 2); px(wx + 4 + sh, WY + 9, '#e8e2c8', 2, 1);
+    if (!idle('weaver')) { px(wx + 8, WY + 7, SKINF[3], 2, 2); px(wx + 8, WY + 6, '#1e1410', 2, 1); px(wx + 8, WY + 9, '#6a4c93', 2, 3); }
+    else { px(wx + 8, WY + 7, SKINF[3], 2, 2); px(wx + 8, WY + 6, '#1e1410', 2, 1); px(wx + 8, WY + 9, '#6a4c93', 2, 3); px(wx + 6, WY + 9, '#8a4a1a', 2, 1); } }
+  // the old siren pole: bat boxes and a swift tower, swifts circling
+  px(72, 12, '#7a6a55', 2, 38); px(68, 9, '#8a5a2e', 10, 4); px(69, 10, '#3a2a1a', 2, 1); px(72, 10, '#3a2a1a', 2, 1); px(75, 10, '#3a2a1a', 2, 1); px(67, 8, '#6b4a2e', 12, 1);
+  px(70, 26, '#8a5a2e', 6, 6); px(72, 28, '#2a1a10', 2, 2);
+  if (!winter) for (let k = 0; k < 4; k++) { const a = t * 1.6 + k * 1.57, x = 73 + Math.cos(a) * 12, y = 6 + Math.sin(a) * 4; px(x - 1, y, '#2a2a2a', 3, 1); px(x, y - (Math.floor(t * 6 + k) % 2), '#2a2a2a'); }
+  // root cellar: the old shelter, sodded over
+  blob(46, 58, 11, 7, (x, y) => y > 4 ? S.grass2 : (hash(x * 3 + y) > 0.85 && S.flowers.length ? S.flowers[1 % S.flowers.length] : (winter ? '#e8eef0' : '#6f9a45')));
+  px(41, 53, '#9a8f80', 10, 7); px(42, 54, '#7a4a24', 8, 6); px(45, 54, '#5a3418', 1, 6); px(48, 57, '#e8d27a'); px(56, 47, '#8a8a8a', 1, 6); px(55, 46, '#8a8a8a', 3, 1);
+  // the pond where the sprinkler was: cattails, lily pads, a frog and a heron
+  { blob(26, 75, 17, 6, winter ? '#cfe3ea' : (x, y) => (hash(x + y * 5 + Math.floor(t * 2)) > 0.9 ? '#7fb8d0' : '#4f8fb0'));
+    if (!winter) { [[16, 74], [30, 77], [34, 73]].forEach(([x, y]) => { px(x, y, '#3f8a30', 3, 1); px(x + 1, y - 1, '#3f8a30', 1, 1); }); px(31, 76, '#f7b6d2'); }
+    [8, 10, 12, 40, 42].forEach((x, k) => { px(x, 66 + (k % 2) * 2, '#4f7a35', 1, 9); px(x, 64 + (k % 2) * 2, winter ? '#8a6a4a' : '#6b3e1e', 1, 3); px(x + 1, 69, '#5a8a3a'); });
+    const jump = (t % 9) / 9; if (!winter) { if (jump < 0.06) { const s = jump / 0.06; px(18 + s * 8, 73 - Math.sin(Math.PI * s) * 4, '#3f7f3a', 2, 1); } else px(jump < 0.5 ? 26 : 18, 73, '#3f7f3a', 2, 1); }
+    if (!winter) { const dx = 30 + Math.sin(t * 2.3) * 8, dy = 66 + Math.sin(t * 3.7) * 2; px(dx, dy, '#1c7ed6', 3, 1); G.globalAlpha = 0.6; px(dx + 1, dy - 1, '#d0ebff'); G.globalAlpha = 1; }
+    const strike = (t % 13) < 0.4, hx = 46;   // the heron
+    px(hx + 1, 74, '#d0a040', 1, 6); px(hx + 3, 74, '#d0a040', 1, 6); px(hx, 68, '#8f9aa6', 6, 6); px(hx - 1, 70, '#6b7480', 2, 3);
+    if (strike) { px(hx - 2, 70, '#8f9aa6', 3, 1); px(hx - 4, 72, '#8f9aa6', 2, 2); px(hx - 6, 74, '#e0b030', 2, 1); }
+    else { px(hx + 5, 62, '#c8d0d8', 1, 6); px(hx + 5, 61, '#ffffff', 3, 2); px(hx + 7, 61, '#222'); px(hx + 8, 62, '#e0b030', 3, 1); px(hx + 4, 61, '#222', 2, 1); } }
+  // string of paper lanterns across the yard
+  { for (let x = 74; x < 150; x++) { const u = (x - 74) / 76; px(x, 40 + Math.round(6 * u * (1 - u) * 4) / 2, '#5a4a3a'); }
+    for (let x = 78; x < 148; x += 8) { const u = (x - 74) / 76, y = 41 + Math.round(6 * u * (1 - u) * 4) / 2; px(x, y, ['#f2c21b', '#e8590c', '#e64980', '#4dabf7'][(x / 8 | 0) % 4], 2, 3); } }
+  // the clay oven, the baker and the bread peel
+  { px(76, 62, '#9a8f80', 18, 6); for (let k = 0; k < 6; k++) px(76 + k * 3, 64 + (k % 2), '#7e7468', 2, 1);
+    blob(85, 60, 8, 6, (x, y) => y > 1 ? undefined : (hash(x * 9 + y) > 0.8 ? '#a86f45' : '#c08a5a')); px(77, 60, '#c08a5a', 17, 2);
+    px(83, 57, '#2a1a10', 5, 5); const fl = Math.floor(t * 9) % 3; px(84, 59, ['#ff9a3c', '#ffd27a', '#ff7a1a'][fl], 3, 3); px(85, 60, '#fff1a8');
+    px(90, 52, '#8a6040', 2, 4); for (let k = 0; k < 6; k++) { const s = (t * 0.45 + k / 6) % 1; G.globalAlpha = 0.45 * (1 - s); px(91 + Math.sin(s * 6 + k) * 2 - s * 4, 51 - s * 20, '#e2e2e2', 2, 2); } G.globalAlpha = 1;
+    const r = person(66, 68, { skin: SKINF[4], shirt: '#e8dcc0', pants: '#5a4a3a', apron: '#f4f1ea', hs: 'short', hair: '#1e1410', hat: 'kerchief', hatC: '#c92a2a', arm: 'out' });
+    px(r.hand[0], r.hand[1], '#b08a52', 6, 1); px(r.hand[0] + 5, r.hand[1] - 1, '#b08a52', 3, 1); px(r.hand[0] + 5, r.hand[1] - 2, '#c8803a', 3, 1); }
+  // the long plank table and the someday spread
+  { px(95, 62, '#a0703c', 42, 2); px(95, 63, '#7e5428', 42, 1); px(98, 64, '#7e5428', 1, 6); px(133, 64, '#7e5428', 1, 6); px(96, 68, '#8a6040', 40, 1);
+    px(99, 59, '#c88a4a', 5, 3); px(100, 58, '#d9a060', 3, 1); px(105, 60, '#c88a4a', 4, 2);                             // loaves
+    px(110, 60, '#1c5f8a', 6, 2); px(111, 59, '#e03131', 2, 1); px(113, 58, '#e03131', 2, 2); px(114, 59, '#ff6b3a');      // bowl of tomatoes
+    px(118, 58, '#e0a030', 2, 4); px(118, 57, '#f2efe6', 2, 1);                                                          // honey
+    px(121, 59, '#f2e2a0', 5, 3); px(121, 59, '#e8d080', 5, 1);                                                          // cheese
+    px(128, 57, '#b5653a', 3, 5); px(131, 58, '#b5653a', 1, 2);                                                          // pitcher
+    if (S.flowers.length) { px(133, 58, '#a8d0c0', 2, 4); px(132, 56, S.flowers[0]); px(134, 55, S.flowers[1 % S.flowers.length]); px(133, 56, '#3f8a30', 1, 2); }
+    else { px(133, 58, '#a8d0c0', 2, 4); px(133, 55, '#6b4a2e', 1, 3); px(134, 54, '#c92a2a'); }                          // winter: a branch with berries
+    [101, 107, 116, 124].forEach(x => px(x, 61, '#4f8fb0', 3, 1)); }
+  // the gardener with a basket of whatever's ripe
+  { const r = person(140, 72, { skin: SKINF[1], shirt: '#a8c47a', pants: '#6b5a3a', hs: 'pony', hair: '#6b3a1e', hat: 'straw', arm: 'carry', left: true });
+    const bx = r.hand[0] - 5, by = r.hand[1];
+    if (idle('gardener')) { book(r.hand[0] - 2, r.hand[1] - 1); px(146, 70, '#8a6a3a', 5, 2); for (let k = 0; k < 4; k++) px(146 + k, 69, ['#c8a060', '#6b4a2e', '#e8d27a', '#4a3a2a'][k]); }   // seed packets
+    else { px(bx, by - 1, '#a0703c', 6, 3); px(bx + 1, by - 1, '#c8803a', 4, 1); px(bx + 1, by - 3, '#e03131', 2, 2); px(bx + 3, by - 3, SEASON === 2 ? '#e8902a' : '#3f8a30', 2, 2); px(bx - 1, by - 3, '#a0703c', 1, 2); px(bx + 6, by - 3, '#a0703c', 1, 2); } }
+  // the spinner on a bench, spindle turning
+  { px(154, 68, '#8a6040', 16, 2); px(155, 70, '#6b4a2e', 1, 4); px(168, 70, '#6b4a2e', 1, 4);
+    const r = person(158, 72, { skin: SKINF[5], shirt: '#c87f5a', pants: '#4a4a5a', hs: 'bun', hair: '#9a9a9a', sit: true, arm: 'up' });
+    px(156, 64, '#f4f1ea', 4, 3);   // fleece in the lap
+    if (idle('spinner')) { px(r.hand[0] - 1, r.hand[1] + 1, '#e8590c', 3, 2); px(r.hand[0] + 2, r.hand[1] + 2, '#4dabf7', 2, 2); }   // dye pots
+    else { px(r.hand[0], r.hand[1] + 1, '#f4f1ea', 1, 9); const sp = Math.floor(t * 10) % 2; px(r.hand[0] - 1, r.hand[1] + 10, sp ? '#8a5a2e' : '#c8a060', 3, 1); px(r.hand[0], r.hand[1] + 11, '#8a5a2e', 1, 2); } }
+  // the fiddler where the flamingos stood
+  { const r = person(56, 82, { skin: SKINF[2], shirt: '#6a4c93', pants: '#3a3a3a', hs: 'curly', hair: '#2a1d14', arm: 'up', left: false });
+    px(59, r.yh + 5, '#8a4a1a', 4, 2); px(63, r.yh + 6, '#2a1d14', 2, 1);
+    const bow = Math.round(Math.sin(t * (idle('fiddler') ? 0 : 6)) * 2); px(r.hand[0] - 3 + bow, r.hand[1] + 5, '#e8e2c8', 7, 1);
+    if (Math.floor(t * 3) % 2 && !idle('fiddler')) { px(67, r.yh - 4 - (Math.floor(t * 3) % 4), '#ffffff', 1, 2); px(68, r.yh - 4 - (Math.floor(t * 3) % 4), '#ffffff'); } }
+  // small child after the hens
+  { const ph = t * 0.7, cx = 108 + Math.sin(ph) * 10, L = Math.cos(ph) < 0;
+    [[0, 0], [8, 1], [15, 2]].forEach(([d, k]) => { const hx = cx + (L ? -12 - d : 9 + d); hen(hx, 68, t, Math.floor(t * 2 + k) % 3 === 0, ['#a0522d', '#e8d9b8', '#3a2a20'][k]); });
+    person(cx, 84, { kid: true, skin: SKINF[3], shirt: '#ffd43b', pants: '#2b8a3e', hs: 'curly', hair: '#1e1410', arm: 'out', walk: true, f: t * 4, left: L });
+    px(cx + (L ? -4 : 8), 76, '#f4ead2', 2, 2); }
+  // the potter at the kick wheel
+  { px(184, 74, '#6b4a2e', 9, 1); px(188, 75, '#555', 1, 5); px(183, 80, '#6b4a2e', 11, 2); px(176, 76, '#6b4a2e', 6, 1); px(177, 77, '#6b4a2e', 1, 5); px(180, 77, '#6b4a2e', 1, 5);
+    const spin = !idle('potter') && Math.floor(t * 8) % 2;
+    if (!idle('potter')) { px(186, 70, '#b5653a', 5, 4); px(187, 69, '#c87a4a', 3, 1); px(186 + (spin ? 1 : 3), 71, '#8a4a2a', 1, 2); }
+    const r = person(175, 76, { skin: SKINF[0], shirt: '#5f7f9f', pants: '#4a3a2a', apron: '#b5a080', hs: 'long', hair: '#c8962e', sit: true, arm: idle('potter') ? 'lap' : 'out' });
+    if (idle('potter')) book(r.hand[0], r.hand[1] - 1);
+    [196, 200, 204].forEach((x, k) => { px(x, 81, '#c87a4a', 3, 3); px(x + 1, 80, '#b5653a'); }); px(194, 84, '#8a6040', 13, 1); }
+  // the apple tree and the hives where the driveway was
+  { tree(206, 54, 10, t, 14);
+    if (SEASON === 2) [[200, 48], [210, 46], [213, 52], [204, 51]].forEach(([x, y]) => px(x, y, '#d42a2a'));
+    [[200, 0], [212, 1]].forEach(([x]) => { px(x, 74, '#f4ead2', 8, 3); px(x, 77, '#d8e4ec', 8, 3); px(x, 80, '#f4ead2', 8, 2); px(x - 1, 73, '#8a6040', 10, 1); px(x + 3, 80, '#3a2a1a', 2, 1); if (winter) px(x - 1, 72, '#ffffff', 10, 1); });
+    if (!idle('beekeeper')) for (let k = 0; k < 9; k++) { const a = t * (2 + k * 0.3) + k, x = 210 + Math.cos(a) * (6 + k % 4 * 3), y = 70 + Math.sin(a * 1.3) * 5; px(x, y, '#2a2a10'); if (k % 3 === 0) px(x + 1, y, '#f2c21b'); }
+    const r = person(224, 82, { skin: SKINF[2], shirt: '#f4f1ea', pants: '#f4f1ea', hs: 'short', hair: '#2a1d14', hat: 'veil', arm: idle('beekeeper') ? 'lap' : 'out', left: true });
+    if (idle('beekeeper')) { book(r.hand[0] - 2, r.hand[1] - 1); }
+    else { px(r.hand[0] - 2, r.hand[1] - 1, '#9a9a9a', 3, 3); for (let k = 0; k < 3; k++) { const s = (t * 0.8 + k / 3) % 1; G.globalAlpha = 0.5 * (1 - s); px(r.hand[0] - 2 - s * 4, r.hand[1] - 3 - s * 8, '#e8e8e8', 2, 1); } G.globalAlpha = 1; } }
+  // the wheelwright with a cart wheel on the stand
+  { const cx = 223, cy = 58, a = idle('wheelwright') ? 0 : t * 1.5;
+    for (let k = 0; k < 20; k++) { const u = k / 20 * 2 * Math.PI; px(cx + Math.cos(u) * 4.5, cy + Math.sin(u) * 4.5, '#6b4a2e'); }
+    for (let k = 0; k < 3; k++) { const u = a + k * Math.PI / 3; for (let q = -3; q <= 3; q++) px(cx + Math.cos(u) * q, cy + Math.sin(u) * q, '#a0703c'); }
+    px(cx, cy, '#3a2a1a'); px(cx, cy + 5, '#5a4a3a', 1, 4);
+    const r = person(232, 67, { skin: SKINF[1], shirt: '#8a6a4a', pants: '#3a3a3a', apron: '#5a4030', hs: 'bald', hair: '#4a3a2a', arm: 'out', left: true });
+    if (idle('wheelwright')) book(r.hand[0] - 2, r.hand[1] - 1); else px(r.hand[0] - 1, r.hand[1] - 1, '#9a9a9a', 1, 3); }
+  // the lane where the street was: packed earth between hedgerows
+  px(0, 84, winter ? '#dfe6e2' : S.grass2, PW, 2); for (let x = 0; x < PW; x += 2) { const h = hash(x * 1.3 + 4); px(x, 84 - (h * 3 | 0), winter ? '#b8c4bc' : (S.leaf ? S.leaf[(h * 10 | 0) % S.leaf.length] : '#6b4a2e'), 2, (h * 3 | 0) + 1); if (h > 0.85 && S.flowers.length) px(x, 82 - (h * 3 | 0), S.flowers[(h * 31 | 0) % S.flowers.length]); }
+  px(0, 86, winter ? '#e8ecea' : '#b59a6e', PW, 12); px(0, 98, S.grass, PW, 2);
+  for (let x = 0; x < PW; x += 3) { const h = hash(x * 2.7); if (h > 0.6) px(x, 87 + (h * 10 | 0), winter ? '#d0d8d4' : '#a08660'); if (h > 0.9) px(x, 91, '#c8b088', 2, 1); }
+  // the shepherd's round: the flock, the collie and a fourteen-year-old with a crook
+  { const fx = ((t * 7) % 400) - 140, f = t * 3;
+    [[52, 0], [66, 2], [78, 0], [92, 1], [104, 2]].forEach(([d, k], i) => sheep(fx + d, 83 + k, f + i, Math.floor(t * 0.8 + i) % 4 === 0, winter ? '#f4f0e4' : '#ece6d6'));
+    collie(fx + 34 + Math.sin(t * 1.7) * 6, 91 + Math.round(Math.sin(t * 2.3) * 2), f);
+    const r = person(fx + 18, 98, { kid: true, skin: SKINF[4], shirt: '#4a7aa8', pants: '#5a4a3a', hs: 'short', hair: '#1e1410', hat: winter ? 'beanie' : 'cap', hatC: '#c87f2a', arm: 'out', walk: true, f });
+    px(r.hand[0], r.yh - 4, '#8a6040', 1, 15); px(r.hand[0] + 1, r.yh - 5, '#8a6040', 2, 1); px(r.hand[0] + 3, r.yh - 4, '#8a6040', 1, 2);
+    px(fx + 15, 88, '#6b4a2e', 3, 3); }
+  if (winter) for (let k = 0; k < 40; k++) { const x = (hash(k) * PW + t * 3) % PW, y = (hash(k + 50) * PH + t * (6 + k % 5)) % PH; px(x, y, '#ffffff'); }
+  if (DUSK > 0) duskFut(t);
+}
+function duskFut(t) {
+  G.globalAlpha = 0.55 * DUSK; px(0, 0, '#141a3a', PW, PH); G.globalAlpha = 1; moon(214);
+  const a = DUSK;
+  G.globalAlpha = a;
+  HX.forEach(x => { [x + 20, x + 38].forEach(wx => px(wx, WY + 5, '#ffcf7a', 10, 8)); });
+  px(113, WY + 6, '#8a5a2e', 1, 7); for (let k = 2; k < 7; k++) px(112 + k, WY + 7, ['#c92a2a', '#f2c21b', '#2b8a3e', '#1c7ed6', '#e8e2c8'][k - 2], 1, 4);
+  for (let x = 78; x < 148; x += 8) { const u = (x - 74) / 76, y = 41 + Math.round(6 * u * (1 - u) * 4) / 2; px(x, y, ['#ffe066', '#ffa94d', '#ff8cc6', '#a5d8ff'][(x / 8 | 0) % 4], 2, 3); G.globalAlpha = 0.25 * a; blob(x + 1, y + 1, 4, 3, '#ffd27a'); G.globalAlpha = a; }
+  px(83, 57, '#ff9a3c', 5, 5); px(84, 58, '#fff1a8', 3, 3); G.globalAlpha = 0.3 * a; blob(85, 60, 9, 6, '#ff9a3c'); G.globalAlpha = a;
+  if (SEASON !== 3) for (let k = 0; k < 18; k++) { const on = Math.sin(t * (1.5 + hash(k) * 2) + k * 3) > 0.55; if (!on) continue; const x = hash(k + 7) * PW, y = 52 + hash(k + 19) * 30 + Math.sin(t + k) * 2; px(x, y, '#e8ff7a'); G.globalAlpha = 0.3 * a; px(x - 1, y - 1, '#e8ff7a', 3, 3); G.globalAlpha = a; }
+  G.globalAlpha = 1;
+}
+
+
+// ================= the festival in the park =================
+function drawBison(x, y, frame, grazing) {             // facing right; head low when grazing (from Two-Stroke Morning)
+  const step = Math.floor(frame) % 2, B = '#4a3020', D = '#2e1d12', H = '#6b4a2e';
+  px(x + 2, y + 11, D, 2, 5 - step); px(x + 7, y + 11, D, 2, 4 + step); px(x + 14, y + 11, D, 2, 4 + step); px(x + 18, y + 11, D, 2, 5 - step);
+  px(x, y + 5, B, 17, 7); px(x + 1, y + 4, B, 12, 1);
+  px(x + 11, y, H, 9, 11); px(x + 12, y - 1, H, 6, 1); px(x + 13, y - 2, H, 3, 1);
+  px(x - 1, y + 6, D, 1, 4); px(x - 2, y + 9, D, 1, 2);
+  const hy = grazing ? y + 9 : y + 4;
+  px(x + 19, hy, D, 6, 6); px(x + 20, hy + 5, H, 4, 2); px(x + 20, hy - 1, '#ddd2b8', 1, 2); px(x + 23, hy - 1, '#ddd2b8', 1, 2); px(x + 23, hy + 2, '#111');
+}
+function drawHorse(x, y, f, g) {                        // bay horse; y is the top of a 16 px box
+  const st = Math.floor(f) % 2, B = '#8b5a2b', D = '#3a2414';
+  px(x + 2, y + 9, D, 1, 7 - st); px(x + 5, y + 9, D, 1, 6 + st); px(x + 13, y + 9, D, 1, 6 + st); px(x + 16, y + 9, D, 1, 7 - st);
+  px(x + 1, y + 4, B, 17, 6); px(x - 1, y + 4, D, 2, 6);
+  const hy = g ? y + 9 : y - 2; px(x + 16, hy + 1, B, 3, g ? 4 : 7); px(x + 18, hy, B, 5, 3); px(x + 16, hy, D, 2, g ? 3 : 6); px(x + 21, hy + 1, '#111');
+}
+function drawGoat(x, y, f, g) {                         // white goat, beard, back-swept horns (from Two-Stroke Morning)
+  const st = Math.floor(f) % 2, Wt = '#f4f1ea', T = '#c9b38f', K = '#333';
+  px(x + 1, y + 10, K, 1, 6 - st); px(x + 3, y + 10, K, 1, 5 + st); px(x + 9, y + 10, K, 1, 5 + st); px(x + 11, y + 10, K, 1, 6 - st);
+  px(x, y + 6, Wt, 13, 5); px(x + 2, y + 6, T, 4, 1); px(x - 1, y + 4, Wt, 2, 2);
+  const hy = g ? y + 9 : y + 1; px(x + 12, hy + 2, Wt, 2, g ? 2 : 5); px(x + 13, hy, Wt, 4, 3); px(x + 14, hy + 3, Wt, 1, 2);
+  px(x + 12, hy - 2, K, 1, 2); px(x + 11, hy - 3, K, 1, 1); px(x + 15, hy + 1, '#111');
+}
+function squirrel(x, y, f, L) {                          // fox squirrel, the big rusty Texas kind; tail flicks
+  const d = L ? -1 : 1, bx = L ? x + 1 : x, fl = Math.floor(f * 3) % 4 === 0 ? 1 : 0, C = '#b5652a', D = '#8a4a1e';
+  px(bx, y + 2, C, 4, 3); px(bx + 1, y + 4, '#e8c8a0', 2, 1);
+  const hx = L ? bx - 2 : bx + 3; px(hx, y, C, 3, 3); px(hx + (L ? 0 : 2), y + 1, '#111'); px(hx + 1, y - 1, D);
+  const tx = L ? bx + 4 : bx - 3; px(tx, y - 1 - fl, D, 3, 5); px(tx + (L ? 1 : -1), y - 3 - fl, C, 3, 3); px(tx, y + 3, C, 3, 2);
+  px(bx + 1, y + 5, D); px(bx + 3, y + 5, D);
+}
+function miniBison(x, y, g) { px(x, y + 1, '#4a3020', 7, 3); px(x + 4, y, '#6b4a2e', 3, 3); px(x + 7, y + (g ? 2 : 1), '#2e1d12', 2, 2); px(x + 1, y + 4, '#2e1d12', 1, 2); px(x + 5, y + 4, '#2e1d12', 1, 2); px(x - 1, y + 2, '#2e1d12'); }
+function crew(x, yf, f, L, t) {                          // backpack blower, hi-vis, earmuffs; returns the engine's spot
+  const r = person(x, yf, { skin: '#c68a5a', shirt: '#ff8a1e', pants: '#3b4a5c', hs: 'short', hair: '#2a1d14', hat: 'cap', hatC: '#f2c21b', arm: 'out', left: L, walk: true, f, smile: false });
+  px(x, r.yb + 3, '#f5f0d0', 7, 1); px(L ? x + 1 : x + 4, r.yh + 2, '#ffaa00', 2, 2);
+  px(L ? x + 7 : x - 4, r.yb - 1, '#e8590c', 4, 8); px(L ? x + 7 : x - 4, r.yb + 6, '#8a3a10', 4, 2);
+  const d = L ? -1 : 1, [hx, hy] = r.hand; for (let k = 0; k < 6; k++) px(hx + d * k, hy + 1 + k * 0.7, '#8a3a10', 1, 2);
+  const nx = hx + d * 6, ny = hy + 5;
+  for (let k = 0; k < 10; k++) { const s = (t * 1.8 + k / 10) % 1; px(nx + d * s * 26, ny + 3 - Math.sin(Math.PI * s) * 7 + (hash(k) - 0.5) * 4, ['#d9822b', '#b84f1f', '#8a7a3a', '#c8b48a'][k % 4]); }
+  G.globalAlpha = 0.5; for (let k = 0; k < 3; k++) { const s = (t * 0.9 + k / 3) % 1; px((L ? x + 9 : x - 5) - d * s * 3, r.yb - 2 - s * 10, '#8a96a3', 2, 2); } G.globalAlpha = 1;
+  return [L ? x + 9 : x - 3, r.yb + 2];
+}
+function rideMower(x, y, t) {                            // riding mower heading right, operator aboard
+  const j = Math.floor(t * 8) % 2;
+  px(x, y + 4 + j, '#2e7d32', 22, 6); px(x + 14, y + 2 + j, '#2e7d32', 8, 3); px(x + 15, y + 2 + j, '#f2c21b', 6, 1);
+  px(x - 1, y + 9, '#235d26', 26, 2); px(x, y + 10, '#111', 5, 5); px(x + 1, y + 11, '#555', 3, 3); px(x + 18, y + 11, '#111', 4, 4);
+  px(x + 3, y + 1 + j, '#333', 6, 3); px(x + 3, y - 3 + j, '#333', 2, 4); px(x + 15, y - 2 + j, '#333', 1, 4); px(x + 13, y - 3 + j, '#333', 4, 1);
+  const rx = x + 5, ry = y - 11 + j;
+  px(rx + 1, ry + 7, '#ff8a1e', 7, 6); px(rx + 2, ry + 9, '#f5f0d0', 5, 1); px(rx + 2, ry + 2, '#9c6b46', 5, 5); px(rx + 3, ry + 3, '#e0ac7d', 3, 3);
+  px(rx + 1, ry, '#f2c21b', 7, 3); px(rx, ry + 2, '#f2c21b', 9, 1); px(rx + 6, ry + 4, '#ffaa00', 2, 2); px(rx + 8, ry + 9, '#e0ac7d', 3, 1); px(rx + 6, ry + 13, '#3b4a5c', 5, 2);
+  for (let k = 0; k < 4; k++) { const s = (t * 2 + k / 4) % 1; px(x + 24 + s * 10, y + 8 - Math.sin(Math.PI * s) * 4, k % 2 ? '#4d8733' : '#7aa045'); }
+  return [x + 2, y + 2];
+}
+function soundRings(srcs, t) { G.strokeStyle = '#ffffff'; G.lineWidth = 1; srcs.forEach(([x, y], i) => { for (let k = 0; k < 3; k++) { const r = ((t * 22 + k * 11 + i * 5) % 34) + 2; G.globalAlpha = 0.55 * (1 - r / 36); G.beginPath(); G.arc(x + 0.5, y + 0.5, r, 0, 2 * Math.PI); G.stroke(); } }); G.globalAlpha = 1; }
+function note(x, y, c, big) { if (big) { px(x, y, c, 2, 2); px(x + 1, y - 5, c, 1, 5); px(x + 2, y - 5, c, 1, 2); } else { px(x, y, c); px(x + 1, y - 3, c, 1, 3); } }
+function drawFest(t, fut) {
+  G = fut ? ogF : ogP; const S = SEAS[SEASON], winter = fut && SEASON === 3;
+  sky(fut ? (winter ? '#a9c4d8' : '#8ec5e6') : '#78b0d8', fut ? '#dcefe6' : '#c9dde6', 42);
+  if (DUSK_TARGET < 0.5) { px(206, 6, '#ffe57a', 7, 7); px(204, 8, '#ffe57a', 11, 3); px(208, 4, '#ffe57a', 3, 11); }
+  // campus on the skyline: brick halls and a clock tower
+  px(4, 26, '#b5654a', 26, 14); px(48, 28, '#b5654a', 24, 12); px(4, 25, '#8a4a34', 26, 1); px(48, 27, '#8a4a34', 24, 1);
+  px(32, 12, '#c9b79a', 12, 28); px(34, 6, '#c9b79a', 8, 6); px(37, 2, '#8a7a6a', 2, 4); px(35, 14, '#f4f1e8', 6, 6); px(38, 15, '#222', 1, 3); px(38, 17, '#222', 2, 1);
+  for (let x = 6; x < 28; x += 4) px(x, 30, '#f4e7c8', 2, 3); for (let x = 50; x < 70; x += 4) px(x, 32, '#f4e7c8', 2, 3);
+  if (!fut) {
+    for (let x = 76; x < PW; x += 3) px(x, 33 + (hash(x) * 3 | 0), '#7fa58a', 3, 8);                                  // a row of planted trees
+    for (let x = 0; x < PW; x += 8) px(x, 40, (x / 8) % 2 ? '#5db84e' : '#52a845', 8, 60);                               // mown park lawn
+    px(0, 41, '#8a8d90', PW, 5); for (let x = 78; x < PW; x += 13) { px(x, 41, ['#c92a2a', '#1c7ed6', '#f4f1e8', '#3a3a3a'][(x / 13 | 0) % 4], 9, 3); px(x + 2, 40, '#a8d8ec', 5, 1); }   // parking lot
+  } else {
+    px(0, 40, S.grass, PW, 60);
+    for (let x = 0; x < PW; x++) { const h = 6 + hash(x * 1.7) * 8 + Math.sin(t * 0.8 + x / 7); px(x, 50 - h, winter ? '#c8b89a' : hash(x * 3.3) > 0.7 ? '#8a7a3a' : hash(x) > 0.5 ? '#6f8f3a' : '#5f8a35', 1, h);
+      if (!winter && hash(x * 9.1) > 0.9 && S.flowers.length) px(x, 49 - h, S.flowers[(hash(x) * 9 | 0) % S.flowers.length]); }
+    const bx = 138 + Math.round(Math.sin(t * 0.05) * 5);                                                              // the herd, drifting as it grazes
+    [[0, 0], [23, 2], [45, -1]].forEach(([d, dy], i) => drawBison(bx + d, 29 + dy, t * 1.5 + i, Math.floor(t * 0.5 + i) % 3 !== 0));
+    for (let x = 0; x < PW; x += 2) { const h = 2 + hash(x * 5.1) * 3; px(x, 46 - h, winter ? '#b8a888' : '#5f8a35', 1, h); }
+    drawHorse(216, 30, t, Math.floor(t * 0.3) % 2 === 0);                                                             // the young rider on the fence line
+    person(219, 38, { kid: true, skin: SKINF[2], shirt: '#c92a2a', pants: '#4a5a7a', hs: 'short', hair: '#1e1410', hat: 'tejana', arm: 'out' });
+    for (let x = 0; x < PW; x += 2) for (let y = 52; y < 100; y += 4) { const h = hash(x * 3.1 + y * 7.7); if (h > 0.6) px(x, y, S.grass2, 1, 2); if (h > 0.95 && S.flowers.length) px(x, y - 1, S.flowers[(h * 100 | 0) % S.flowers.length]); }
+    if (winter) for (let x = 0; x < PW; x += 3) { const h = hash(x * 5.3); if (h > 0.4) px(x, 52 + (h * 46 | 0), '#ffffff', 2, 1); }
+  }
+  // the thicket tangle and the bamboo stand behind the sign
+  for (let x = 58; x < 92; x++) { const h = 10 + hash(x * 2.3) * 8; for (let y = 48 - h; y < 49; y++) { const q = hash(x * 13 + y * 7); if (q > 0.35) px(x, y, q > 0.85 ? '#2f5d24' : q > 0.6 ? '#4f7a35' : '#3f6a2a'); } }
+  for (let k = 0; k < 7; k++) { let x = 60 + k * 4.5, y = 47; for (let q = 0; q < 14; q++) { x += Math.sin(q * 1.3 + k) * 1.2; y -= 1; px(x, y, '#6b4a2e'); } px(x, y, fut || k % 2 ? '#c92a2a' : '#4f7a35'); }   // tangle of stems, a few berries
+  [62, 66, 69, 73, 77, 80, 84, 88].forEach((x, i) => { const top = 14 + (i % 3) * 4, sway = Math.round(Math.sin(t * 0.9 + i) * 1);
+    for (let y = top; y < 48; y++) px(x + (y < 28 ? sway : 0), y, (y - top) % 6 === 0 ? '#8aa848' : '#6f9a3a');
+    for (let l = 0; l < 4; l++) { const ly = top + 2 + l * 5; px(x + sway + (l % 2 ? 1 : -3), ly, '#5a9f43', 3, 1); } });
+  // the giant sculpture: a weathering-steel arch with a tilted ring on top, and the pit right underneath
+  { const cx = 64, rx = 22, ry = 54, base = 72;
+    for (let k = 0; k <= 160; k++) { const u = Math.PI * k / 160, x = cx - Math.cos(u) * rx, y = base - Math.sin(u) * ry; px(x - 1, y, k % 9 === 0 ? '#7a3412' : '#a8501e', 3, 2); px(x - 1, y, '#c8682a'); }
+    for (let k = 0; k < 40; k++) { const u = 2 * Math.PI * k / 40, x = cx + Math.cos(u) * 7, y = 10 + Math.sin(u) * 4 + Math.cos(u) * 2; px(x, y, k % 5 === 0 ? '#7a3412' : '#b85a22', 2, 1); }
+    px(cx - rx - 2, base, '#6b6b6b', 5, 2); px(cx + rx - 2, base, '#6b6b6b', 5, 2); }
+  // the park sign
+  px(65, 49, '#5a3a20', 2, 8); px(81, 49, '#5a3a20', 2, 8); px(61, 44, '#3f2a18', 26, 7); px(62, 45, '#6b4a2e', 24, 5);
+  // the pavilion, papel picado along the eave, the festival banner
+  px(92, 34, '#6b4a2e', 2, 30); px(147, 34, '#6b4a2e', 2, 30);
+  px(86, 30, '#7a3b2e', 70, 4); for (let k = 1; k < 6; k++) px(86 + k * 5, 30 - k, '#8a4a34', 70 - k * 10, 1);
+  for (let x = 92; x < 150; x += 4) { const c = ['#e64980', '#f2c21b', '#4dabf7', '#40c057', '#fd7e14', '#be4bdb'][(x / 4 | 0) % 6], sw = Math.round(Math.sin(t * 2 + x) * 0.6); px(x + sw, 34, c, 3, 2); px(x + 1 + sw, 36, c); }
+  px(99, 37, '#f2c21b', 42, 7); px(100, 38, '#c92a2a', 40, 5);
+  // families at the picnic tables, three generations
+  [[99, SKINF[3], '#4dabf7', 'bun', '#9a9a9a', 0], [107, SKINF[2], '#e64980', 'long', '#1e1410', 0], [124, SKINF[4], '#f2efe6', 'short', '#1e1410', 1], [132, SKINF[1], '#40c057', 'pony', '#3b2a20', 0]]
+    .forEach(([x, sk, sh, hs, hr, hat], i) => person(x, 63, { skin: sk, shirt: sh, pants: '#3a3a4a', hs, hair: hr, arm: i % 2 ? 'out' : 'down', hat: hat ? 'tejana' : undefined }));
+  person(116, 63, { kid: true, skin: SKINF[3], shirt: '#fd7e14', pants: '#1c7ed6', hs: 'short', hair: '#1e1410', arm: 'up' });
+  [97, 121].forEach(x => { px(x, 56, '#a0703c', 22, 2); px(x - 1, 61, '#8a6040', 24, 1); px(x + 2, 58, '#7e5428', 1, 5); px(x + 19, 58, '#7e5428', 1, 5); });
+  px(99, 54, '#e8d9b0', 4, 2); px(99, 54, '#c92a2a', 4, 1); px(104, 54, '#c8c8c8', 5, 2);                                 // tortillas in a towel, barbacoa in foil
+  px(111, 52, '#f4f1e8', 2, 4); px(114, 52, '#a61e4d', 2, 4); px(117, 52, '#ff8fab', 2, 4);                               // horchata, jamaica, sandía
+  px(124, 54, '#d42a2a', 3, 2); px(128, 54, '#40c057', 3, 2); px(133, 54, '#c88a4a', 5, 2); px(134, 53, '#d9a060', 3, 1);   // salsas and pan de campo
+  // the barbacoa pit: buried overnight on mesquite coals
+  blob(64, 70, 11, 3, '#6b4a2e'); px(54, 70, '#5a3a20', 21, 2); px(58, 67, '#8a8a8a', 12, 1);
+  for (let k = 0; k < 6; k++) { const s = (t * 0.4 + k / 6) % 1; G.globalAlpha = 0.45 * (1 - s); px(60 + k * 2 + Math.sin(s * 5 + k) * 2, 66 - s * 18, '#e2e2e2', 2, 2); } G.globalAlpha = 1;
+  px(76, 64, '#b59a6e', 6, 4); px(77, 63, '#4f7a35', 4, 1); px(76, 65, '#4f7a35', 1, 2); px(81, 65, '#3f6a2a', 1, 2);
+  for (let k = 0; k < 4; k++) px(46 + k * 2, 76 - (k % 2), '#7a5030', 5, 1);
+  { const r = person(46, 73, { skin: SKINF[3], shirt: '#f4f1e8', pants: '#3b4a5c', apron: '#5a4030', hs: 'short', hair: '#1e1410', hat: 'tejana', arm: 'out' });
+    for (let k = 0; k < 8; k++) px(r.hand[0] + k, r.hand[1] + k * 0.5, '#8a6040'); px(r.hand[0] + 8, r.hand[1] + 4, '#7a7a7a', 3, 2); }
+  // fajitas on the mesquite grill
+  px(13, 68, '#2a2a2a', 18, 2); px(14, 70, '#2a2a2a', 1, 6); px(29, 70, '#2a2a2a', 1, 6); px(14, 67, '#666666', 16, 1);
+  for (let k = 0; k < 5; k++) px(15 + k * 3, 66, k % 2 ? '#8a4a2a' : '#6b3a1e', 2, 1); px(16, 65, '#40c057', 2, 1); px(22, 65, '#e03131', 2, 1); px(26, 65, '#f4f1e8', 2, 1);
+  { const fl = Math.floor(t * 8) % 3; px(16 + fl, 69, '#ff7a1a', 2, 1); px(22 - fl, 69, '#ffd27a', 2, 1); }
+  for (let k = 0; k < 5; k++) { const s = (t * 0.5 + k / 5) % 1; G.globalAlpha = 0.4 * (1 - s); px(18 + k * 2 + s * 4, 64 - s * 16, '#d8d8d8', 2, 2); } G.globalAlpha = 1;
+  for (let k = 0; k < 3; k++) px(4, 74 + k * 2, '#7a5030', 7, 1);
+  person(33, 76, { skin: SKINF[2], shirt: '#1c7ed6', pants: '#3a3a3a', hs: 'short', hair: '#1e1410', hat: 'cap', hatC: '#c92a2a', arm: 'out', left: true });
+  // tortillas off the comal
+  px(153, 64, '#8a6040', 14, 2); px(154, 66, '#6b4a2e', 1, 8); px(165, 66, '#6b4a2e', 1, 8); px(155, 62, '#2a2a2a', 7, 2); px(156, 61, '#e8d9b0', 4, 1); px(163, 61, '#e8d9b0', 3, 3);
+  person(168, 74, { skin: SKINF[1], shirt: '#be4bdb', skirt: '#be4bdb', apron: '#f4f1e8', hs: 'bun', hair: '#5a5a5a', arm: 'out', left: true });
+  // the conjunto on the bandstand
+  px(174, 60, '#8a6040', 52, 4); px(174, 64, '#6b4a2e', 52, 2);
+  const playing2 = fut ? 1 : 0.4, bel = Math.round(Math.sin(t * 5) * 1.5) + 2;
+  { const r = person(180, 60, { skin: SKINF[4], shirt: '#f4f1e8', pants: '#1e1e1e', hs: 'short', hair: '#1e1410', hat: 'tejana', arm: 'carry' });
+    px(r.hand[0] - 3, r.yb + 1, '#c92a2a', 2, 5); px(r.hand[0] - 1, r.yb + 1, '#f4f1e8', bel, 5); px(r.hand[0] - 1 + bel, r.yb + 1, '#c92a2a', 2, 5); for (let k = 0; k < 5; k += 2) px(r.hand[0] - 3, r.yb + 1 + k, '#222'); }
+  { const r = person(196, 60, { skin: SKINF[2], shirt: '#1e1e1e', pants: '#1e1e1e', hs: 'short', hair: '#1e1410', hat: 'tejana', hatC: '#3a3a3a', arm: 'carry' });
+    px(r.hand[0] - 5, r.yb + 2, '#c8803a', 6, 5); px(r.hand[0] - 3, r.yb + 4, '#3a2a1a', 2, 1); px(r.hand[0] + 1, r.yb, '#8a5a2e', 6, 1); }
+  { const r = person(212, 60, { skin: SKINF[0], shirt: '#c92a2a', pants: '#1e1e1e', hs: 'long', hair: '#3b2a20', arm: 'up', left: true }); px(r.hand[0], r.hand[1] + 1, '#555555', 1, 3); }
+  // squirrels everywhere: one begging at the table, one on the sculpture, two up in the canopy
+  squirrel(141, 51, t, true); squirrel(63 + Math.round(Math.sin(t * 0.3) * 6), 12, t + 1, false);
+  squirrel(28, 8 + Math.round(Math.sin(t * 0.5) * 1), t + 2, false); squirrel(206, 6, t + 3, true);
+  if (!fut) {
+    // today: the park crew picks festival afternoon to blow the paths and mow
+    const srcs = [crew(206, 84, t * 4, true, t), crew(70, 98, t * 4 + 1, false, t)];
+    srcs.push(rideMower(((t * 9) % 320) - 40, 82, t));
+    const r = person(128, 96, { skin: SKINF[0], shirt: '#ffd43b', pants: '#4a5a7a', hs: 'bob', hair: '#8a5a30', arm: 'none', smile: false });
+    px(127, r.yh + 1, SKINF[0], 1, 3); px(133, r.yh + 1, SKINF[0], 1, 3); px(127, r.yh + 4, '#ffd43b', 1, 4); px(133, r.yh + 4, '#ffd43b', 1, 4);   // hands over the ears
+    px(130, r.yh + 3, '#222', 2, 1);
+    for (let k = 0; k < 3; k++) { const s = (t * 0.5 + k / 3) % 1; G.globalAlpha = 0.6 * (1 - s); note(186 + k * 7, 50 - s * 8, '#ffffff', false); } G.globalAlpha = 1;
+    const q = 198, qy = 38; px(q, qy, '#ffffff', 3, 1); px(q + 2, qy + 1, '#ffffff'); px(q + 1, qy + 2, '#ffffff'); px(q + 1, qy + 4, '#ffffff');
+    soundRings(srcs, t);
+  } else {
+    // someday: no crew, the herd keeps the grass, and you can hear the band
+    const sw = Math.round(Math.sin(t * 3) * 2);
+    person(110 + sw, 94, { skin: SKINF[4], shirt: '#f4f1e8', pants: '#2a2a3a', hs: 'short', hair: '#1e1410', hat: 'tejana', arm: 'out' });
+    person(118 + sw, 94, { skin: SKINF[2], shirt: '#e64980', skirt: Math.floor(t * 3) % 2 ? '#e64980' : '#f783ac', hs: 'long', hair: '#1e1410', arm: 'up', left: true });
+    const r = person(150, 96, { kid: true, skin: SKINF[3], shirt: '#40c057', pants: '#1c7ed6', hs: 'curly', hair: '#1e1410', arm: 'up' }); px(r.hand[0], r.hand[1] - 3, '#f4f1e8', 2, 3); px(r.hand[0], r.hand[1] - 4, '#e03131', 2, 2);
+    person(76, 94, { skin: SKINF[5], shirt: '#a8c47a', pants: '#5a4a3a', hs: 'bun', hair: '#d8d8d8', arm: 'out' }); person(84, 94, { kid: true, skin: SKINF[5], shirt: '#ffd43b', pants: '#2b8a3e', hs: 'pony', hair: '#3b2a20', arm: 'up', left: true });
+    for (let k = 0; k < 6; k++) { const s = (t * 0.35 + k / 6) % 1; G.globalAlpha = 1 - s; note(184 + k * 6 - s * 34, 52 - s * 34, '#ffffff', true); } G.globalAlpha = 1;
+    // goats browsing the Thicket's edge: brush, vines and brambles are their favourite food
+    [[186, 80, 0], [203, 82, 1], [219, 78, 2]].forEach(([x, y, i]) => { const up = Math.floor(t * 0.7 + i) % 3 !== 0; drawGoat(x + Math.round(Math.sin(t * 0.2 + i) * 2), y, t * 1.2 + i, !up);
+      if (up && Math.floor(t * 4 + i) % 2) px(x + 17, y + 1, '#3f7f3a'); });
+  }
+  // the Beautiful Hensel Thicket closes in on every side: canopy overhead, bamboo and tangle at the edges, brambles underfoot
+  { const leaf = winter ? ['#6b5a48', '#8a7a68', '#5a4a3a'] : ['#2f5d24', '#3f7f3a', '#5a9f43'];
+    for (let x = 0; x < PW; x++) { const e = Math.min(x, PW - 1 - x) / (PW / 2), h = Math.round(3 + 16 * Math.pow(1 - e, 2.2) + hash(x * 4.1) * 3);
+      for (let y = 0; y < h; y++) { const q = hash(x * 17 + y * 5); if (q > 0.22) px(x, y, leaf[(q * 30 | 0) % 3]); }
+      if (hash(x * 7.7) > 0.86) { const vl = 4 + (hash(x) * 10 | 0), sw = Math.round(Math.sin(t * 0.8 + x) * 0.6); for (let y = h; y < h + vl; y++) px(x + (y > h + vl / 2 ? sw : 0), y, '#4f7a35'); px(x + sw, h + vl, winter ? '#8a7a68' : '#c92a2a'); } }
+    for (let side = 0; side < 2; side++) for (let x = 0; x < 9; x++) { const xx = side ? PW - 1 - x : x, w = 1 - x / 9;
+      for (let y = 0; y < PH; y++) { const q = hash(xx * 11 + y * 3.3); if (q < 0.25 + 0.6 * w) px(xx, y, leaf[(q * 40 | 0) % 3]); } }
+    [1, 4, 7, PW - 3, PW - 6].forEach((x, i) => { const sway = Math.round(Math.sin(t * 0.9 + i) * 1); for (let y = 6; y < PH; y++) px(x + (y < 30 ? sway : 0), y, (y + i * 2) % 7 === 0 ? '#8aa848' : '#6f9a3a'); for (let l = 0; l < 6; l++) px(x + sway + (l % 2 ? 1 : -3), 10 + l * 9 + i, '#5a9f43', 3, 1); });
+    for (let x = 0; x < PW; x++) { const e = Math.min(x, PW - 1 - x); if (e > 46) continue; const h = Math.round((1 - e / 46) * 12 + hash(x * 2.9) * 3);
+      for (let y = PH - h; y < PH; y++) { const q = hash(x * 9 + y * 13); if (q > 0.3) px(x, y, q > 0.9 && !winter ? '#7a1f3d' : leaf[(q * 20 | 0) % 3]); } }
+  }
+  if (DUSK > 0) {
+    G.globalAlpha = 0.55 * DUSK; px(0, 0, '#141a3a', PW, PH); G.globalAlpha = 1; moon(206);
+    G.globalAlpha = DUSK;
+    for (let x = 92; x < 150; x += 4) { px(x, 33, '#ffe9a8'); G.globalAlpha = 0.2 * DUSK; blob(x, 33, 3, 2, '#ffd27a'); G.globalAlpha = DUSK; }
+    G.globalAlpha = 0.18 * DUSK; blob(200, 50, 26, 12, '#fff1a8'); G.globalAlpha = DUSK;
+    px(30, 26, '#ffe9a8', 2, 2); px(54, 30, '#ffe9a8', 2, 2); px(37, 18, '#fff6c8', 2, 2);
+    if (fut && SEASON !== 3) for (let k = 0; k < 18; k++) { if (Math.sin(t * (1.5 + hash(k) * 2) + k * 3) < 0.55) continue; const x = hash(k + 7) * PW, y = 44 + hash(k + 19) * 50; px(x, y, '#e8ff7a'); }
+    G.globalAlpha = 1;
+  }
+}
+
+// ================= who's who =================
+const pastFeet = () => 6 + 22 * (0.5 + 0.5 * Math.sin(T * 0.22));
+const PEOPLE = [
+  { id: 'commons', era: 'fut', tag: 'Commons herd', title: 'The commons herd', box: () => ({ x: 149, y: 38, w: 30, h: 10 }),
+    text: 'Past the last house, the old back lots run into the commons, where a small bison herd grazes. Grazing, with the odd controlled burn, does what the mowers used to do, and keeps it a prairie instead of a lawn.' },
+  { id: 'cook', era: 'past', tag: 'Grill cook', title: 'The grill cook', box: () => ({ x: 68, y: 44, w: 24, h: 25 }),
+    text: 'Burgers and hot dogs, all from packages, on a new kettle grill bought on monthly payments. The lighter fluid makes a flare-up every few minutes, which is most of the entertainment and some of the flavour.' },
+  { id: 'gel', era: 'past', tag: 'Gelatin salad', title: 'The salad', box: () => ({ x: 131, y: 50, w: 14, h: 22 }),
+    text: 'Brought a lime gelatin ring with fruit cocktail set inside it. It took a night in the new refrigerator to set, and it wobbles whenever anyone walks past. Nobody is sure whether it is a salad or a dessert, and everyone takes a slice.' },
+  { id: 'kid', era: 'past', tag: 'Schoolkid, 8', title: 'The schoolkid, age 8', box: () => ({ x: 108, y: 64, w: 18, h: 19 }),
+    text: 'Coonskin cap, striped shirt, a fistful of potato chips. Practised duck and cover at school this week, so when the siren on the pole does its test, drops flat on the lawn with both arms over the cap, then gets back to the chips.' },
+  { id: 'paper', era: 'past', tag: 'Evening paper', title: 'The evening paper', box: () => ({ x: 160, y: 58, w: 16, h: 18 }),
+    text: 'Reads the evening paper in a webbed aluminium lawn chair: the arms race on page one, the ball scores on the back, a full-page ad for a two-tone sedan in between. Gets up only when the burgers are done.' },
+  { id: 'car', era: 'past', tag: 'New car', title: 'The new car', box: () => ({ x: 184, y: 64, w: 50, h: 19 }),
+    text: 'Waxes the new two-tone sedan every Saturday. Thirty-six monthly payments to go, and next year\'s model already has bigger fins. Gasoline costs about 30 cents a gallon and nobody has heard of a catalytic converter.' },
+  { id: 'route', era: 'past', tag: 'Paper route, 12', title: 'The paperboy, age 12', box: () => { const x = (T * 15) % 330 - 40; return { x: x - 4, y: 82, w: 18, h: 17 }; },
+    text: 'Up before six, sixty papers, collects from every house on Fridays. For a lot of kids this was the first job: every single day, rain or shine, paid in cash and trusted with something that mattered to the whole street.' },
+  { id: 'mow', era: 'past', tag: 'Lawn', title: 'The Saturday mow', box: () => { const x = pastFeet(); return { x: x - 10, y: 47, w: 27, h: 20 }; },
+    text: 'Mows the same lawn every Saturday, in stripes. Fertiliser in spring, weedkiller in summer, and a sprinkler whose only timer is whoever remembers to move it. The lawn is the most cared-for plant on the block and feeds no one.' },
+  { id: 'tv', era: 'past', tag: 'TV', title: 'The TV in the picture window', box: () => ({ x: 111, y: 32, w: 12, h: 10 }),
+    text: 'A western on a twelve-inch screen with rabbit-ear antennas, and an aerial on every roof. In 1950 about one American home in eleven had a TV; by 1960 nearly nine in ten did.' },
+  { id: 'siren', era: 'past', tag: 'Siren', title: 'The civil-defence siren', box: () => ({ x: 66, y: 6, w: 14, h: 30 }),
+    text: 'Tested on a set day at noon. Everyone stops for a second, then carries on. The little blue badge with the white triangle and red CD is the Civil Defense emblem.' },
+  { id: 'shelter', era: 'past', tag: 'Shelter', title: 'The backyard fallout shelter', box: () => ({ x: 29, y: 44, w: 29, h: 15 }),
+    text: 'A concrete hatch, a vent pipe and two weeks of canned food below. Home-shelter plans circulated through the 1950s; the big national push came in 1961. Nobody in the family is sure who would get to come in.' },
+  { id: 'radio', era: 'past', tag: 'Radio', title: 'The transistor radio', box: () => ({ x: 147, y: 66, w: 12, h: 15 }),
+    text: 'A pocket transistor radio on the cooler, playing jingles between the ball game. The dial has two small triangles at 640 and 1240: the stations to tune to in an air raid.' },
+  { id: 'flam', era: 'past', tag: 'Flamingos', title: 'The pink flamingos', box: () => ({ x: 50, y: 64, w: 14, h: 16 }),
+    text: 'Plastic pink flamingos, new this year. They arrived in 1957 and have never fully left.' },
+
+  { id: 'baker', era: 'fut', craft: 'baker', tag: 'Baker', title: 'The baker', box: () => ({ x: 64, y: 49, w: 30, h: 20 }),
+    text: 'Bakes for the whole block in the clay oven, three mornings a week. Very good at one thing, so it\'s a living: everyone eats bread. The oven is where the grill stood, and it is warm all evening.' },
+  { id: 'gardener', era: 'fut', craft: 'gardener', tag: 'Gardener', title: 'The gardener', box: () => ({ x: 131, y: 49, w: 14, h: 24 }),
+    text: 'Grows most of what\'s on the table across four backyard gardens and brings the surplus to every gathering. Nobody counts the tomatoes.' },
+  { id: 'spinner', era: 'fut', craft: 'spinner', tagBelow: true, tag: 'Spinner', title: 'The spinner', box: () => ({ x: 154, y: 52, w: 16, h: 21 }),
+    text: 'Spins the flock\'s wool into yarn on a drop spindle while talking, which is how most of the block\'s news travels. One fleece makes yarn for a few sweaters.' },
+  { id: 'weaver', era: 'fut', craft: 'weaver', tag: 'Weaver', title: 'The weaver, at the loom', box: () => ({ x: 111, y: 32, w: 12, h: 10 }),
+    text: 'Weaves the spun wool into blankets and cloth at a loom in the window where the TV used to glow. Trades them for bread, honey and repairs.' },
+  { id: 'fiddler', era: 'fut', craft: 'fiddler', tag: 'Fiddler', title: 'The fiddler', box: () => ({ x: 54, y: 58, w: 16, h: 25 }),
+    text: 'Plays at every gathering on the block, stands where the plastic flamingos stood, and teaches three kids on weekday afternoons.' },
+  { id: 'hens', era: 'fut', tag: 'Hen wrangler, 6', title: 'The hen wrangler, age 6', box: () => { const cx = 108 + Math.sin(T * 0.7) * 10; return { x: cx - 30, y: 70, w: 66, h: 15 }; },
+    text: 'Chases the hens, collects the eggs, eats a tomato like an apple. Has never been told to stay off the grass, because there isn\'t any lawn.' },
+  { id: 'potter', era: 'fut', craft: 'potter', tag: 'Potter', title: 'The potter', box: () => ({ x: 172, y: 63, w: 36, h: 22 }),
+    text: 'Made every plate, bowl and cup on the table, at a kick wheel where the new car used to be waxed. Plates break, so the potter stays busy most of the year.' },
+  { id: 'bees', era: 'fut', craft: 'beekeeper', tag: 'Beekeeper', title: 'The beekeeper', box: () => ({ x: 198, y: 62, w: 32, h: 21 }),
+    text: 'Keeps two hives where the driveway was, under an apple tree. Honey for the table, and the bees work every flower on the block, including the roofs.' },
+  { id: 'wheel', era: 'fut', craft: 'wheelwright', tag: 'Wheelwright', title: 'The wheelwright', box: () => ({ x: 217, y: 50, w: 22, h: 18 }),
+    text: 'Builds and mends cart wheels and bicycles for the block and the next one over.' },
+  { id: 'shep', era: 'fut', craft: 'shepherd', tag: 'Shepherd, 14', title: 'The shepherd, age 14', box: () => { const fx = ((T * 7) % 400) - 140; return { x: fx + 14, y: 80, w: 30, h: 19 }; },
+    text: 'Walks the flock down the lane to fresh grazing every morning before school, with the collie doing half the work. It\'s the paper route of this era: every single day from about 13, paid, and trusted with something alive. The lane was the street; the sheep keep the verges and the old lawns cropped.' },
+  { id: 'cellar', era: 'fut', tag: 'Root cellar', title: 'The root cellar', box: () => ({ x: 35, y: 50, w: 22, h: 12 }),
+    text: 'The old fallout shelter, dug into a mound and sodded over. It holds potatoes, apples and cider now, and stays cool all summer.' },
+  { id: 'pond', era: 'fut', tag: 'Pond', title: 'The pond', box: () => ({ x: 7, y: 60, w: 50, h: 22 }),
+    text: 'Where the sprinkler used to tick: a pond fed by the roofs\' rain barrels, with cattails, lily pads, a frog, a dragonfly and a heron who visits and does not stay still.' },
+  { id: 'bats', era: 'fut', tag: 'Bat pole', title: 'The old siren pole', box: () => ({ x: 64, y: 4, w: 16, h: 30 }),
+    text: 'Same pole, new tenants: bat boxes and a swift tower. The swifts circle it at dusk and the bats take the mosquitoes off the pond.' },
+  // ---- the festival ----
+  { id: 'f_sculpt', scene: 'fest', era: 'both', tag: 'Giant sculpture', title: 'The giant sculpture', box: () => ({ x: 40, y: 4, w: 48, h: 68 }),
+    text: 'Every park deserves a giant sculpture, and every giant sculpture deserves a barbecue going on underneath it. This one is a weathering-steel arch with a ring on top, and the barbacoa pit sits right in its shade.' },
+  { id: 'f_thicket', scene: 'fest', era: 'both', tag: 'Hensel Thicket', title: 'The Beautiful Hensel Thicket', box: () => ({ x: 58, y: 14, w: 34, h: 34 }),
+    text: 'The park the festival is named for, and it surrounds you in every dimension: branches overhead, bamboo and tangle down both sides, brambles underfoot and berries in reach. Nobody mows it, on either side of the divider, and the birds know it.' },
+  { id: 'f_banner', scene: 'fest', era: 'both', tag: 'Festival', title: 'City Barbecue Festival', box: () => ({ x: 99, y: 37, w: 42, h: 7 }),
+    text: 'The whole city in the Beautiful Hensel Thicket, near campus, for Tejano barbecue, the best in the land. Same pavilion, same pit, same band on both sides of the divider. What changes is who keeps the grass, and whether you can hear anything.' },
+  { id: 'f_pit', scene: 'fest', era: 'both', tag: 'Barbacoa pit', title: 'The barbacoa pit', box: () => ({ x: 44, y: 54, w: 38, h: 20 }),
+    text: 'Barbacoa the old South Texas way: the meat wrapped in leaves and burlap, laid on mesquite coals in a pit in the ground, covered with earth and left overnight. It comes up in the morning and goes straight into tortillas with onion, cilantro and salsa. The pitmaster has been up since three and will tell you it was worth it.' },
+  { id: 'f_faj', scene: 'fest', era: 'both', tag: 'Fajitas', title: 'Fajitas on mesquite', box: () => ({ x: 10, y: 56, w: 32, h: 21 }),
+    text: 'Skirt steak, onions and peppers over mesquite. South Texas ranch hands were often given the cheap cuts and grilled them over the brush that grew everywhere; faja means a belt or strip.' },
+  { id: 'f_tort', scene: 'fest', era: 'both', tag: 'Tortillas', title: 'Tortillas off the comal', box: () => ({ x: 152, y: 56, w: 20, h: 19 }),
+    text: 'Flour tortillas rolled out and cooked on a hot comal, one after another, all afternoon. The stack never gets taller, because the line never gets shorter.' },
+  { id: 'f_band', scene: 'fest', era: 'both', tag: 'Conjunto', title: 'The conjunto', box: () => ({ x: 176, y: 40, w: 46, h: 22 }),
+    text: 'Button accordion, bajo sexto and a singer. The accordion came to South Texas with German and Czech settlers in the 1800s, and Tejano musicians made it the sound of the border. They are playing as hard on the left as on the right; on the left you just can\'t hear it.' },
+  { id: 'f_fam', scene: 'fest', era: 'both', tag: 'Families', title: 'Three generations at one table', box: () => ({ x: 96, y: 45, w: 46, h: 18 }),
+    text: 'Grandparents, parents and kids at the picnic tables with barbacoa in foil, tortillas in a towel, salsas, pan de campo and jars of horchata, jamaica and watermelon water. Abuela is the final judge of the barbacoa.' },
+  { id: 'f_blow', scene: 'fest', era: 'past', tag: 'Leaf blower', title: 'The leaf-blower crew', box: () => ({ x: 196, y: 64, w: 30, h: 21 }),
+    text: 'The park\'s contractor scheduled the paths for festival afternoon. Earmuffs on, engine wide open, blowing the same leaves past the bandstand and back. The crew can\'t hear the band either.' },
+  { id: 'f_blow2', scene: 'fest', era: 'past', tag: 'Second blower', title: 'The second blower', box: () => ({ x: 64, y: 78, w: 30, h: 21 }),
+    text: 'Two blowers running a little out of step make the sound throb. Two-Stroke Morning lets you hear exactly how that works, and what it does to the neighbours.' },
+  { id: 'f_mow', scene: 'fest', era: 'past', tag: 'Riding mower', title: 'The riding mower', box: () => { const x = ((T * 9) % 320) - 40; return { x: x - 1, y: 70, w: 27, h: 26 }; },
+    text: 'Laps of a lawn that was already short, through the middle of the festival. The grass it cuts goes nowhere and feeds nothing.' },
+  { id: 'f_ears', scene: 'fest', era: 'past', tag: 'Can\'t hear', title: 'Came for the conjunto', box: () => ({ x: 124, y: 76, w: 12, h: 21 }),
+    text: 'Drove across town for the band. Hears two-stroke engines. Slide the divider to the right and give this person the afternoon they came for.' },
+  { id: 'f_herd', scene: 'fest', era: 'fut', tag: 'The herd', title: 'The bison herd', box: () => { const bx = 138 + Math.round(Math.sin(T * 0.05) * 5); return { x: bx, y: 26, w: 72, h: 20 }; },
+    text: 'The gist. The park\'s mowing crew is a bison herd now: they eat the grass, leave most of the flowers, wallow, and move on so the grass can rest. That grazing is what kept the tallgrass a prairie for ten thousand years, and it makes no noise you\'d mind.' },
+  { id: 'f_rider', scene: 'fest', era: 'fut', craft: 'shepherd', tag: 'Herd rider, 15', title: 'The herd rider, age 15', box: () => ({ x: 214, y: 22, w: 26, h: 22 }),
+    text: 'Rides the herd\'s fence line after school, the way kids once ran a paper route: every day, paid, trusted with something alive. The bison mostly ignore the advice.' },
+  { id: 'f_goats', scene: 'fest', era: 'fut', tag: 'Goats', title: 'Goats on the Thicket', box: () => ({ x: 184, y: 76, w: 50, h: 22 }),
+    text: 'Bison graze grass; goats browse. They go for leaves, vines, brambles and young brush, which makes them the right crew for a thicket: they trim the invasive tangle and keep the paths open without a single engine. The herd rider moves them along before they eat the whole Thicket. Texas raises more goats than any other state, so the climate and the know-how are already here.' },
+  { id: 'f_squirrel', scene: 'fest', era: 'both', tag: 'Squirrels', title: 'Fox squirrels', box: () => ({ x: 134, y: 47, w: 12, h: 10 }),
+    text: 'Fox squirrels in the canopy, on the sculpture and one working the picnic table for tortilla scraps. So why haven\'t we domesticated them, when they\'re practically tame already? Bold isn\'t the same as tame: city squirrels are used to people, but tameness that is bred in over generations is different. Most animals we domesticated live in herds with a pecking order a person can step into, while tree squirrels mostly live and forage alone and guard their own stashes. They do one job for free, though: they bury thousands of nuts and forget plenty of them, which is how a lot of oaks and pecans get planted.' },
+  { id: 'f_dance', scene: 'fest', era: 'fut', tag: 'Dancing', title: 'Dancing', box: () => ({ x: 106, y: 74, w: 22, h: 21 }),
+    text: 'A couple dancing to the conjunto on the grass in front of the pavilion, because now you can hear it.' },
+  { id: 'f_raspa', scene: 'fest', era: 'fut', tag: 'Raspa', title: 'Raspa, cherry', box: () => ({ x: 146, y: 78, w: 12, h: 19 }),
+    text: 'Shaved ice with cherry syrup, held high. Most of it is on the shirt by now.' },
+  { id: 'f_gran', scene: 'fest', era: 'fut', tag: 'Grandma and grandkid', title: 'Grandma and grandkid', box: () => ({ x: 72, y: 76, w: 20, h: 19 }),
+    text: 'Out on the grass to hear the band, pointing out the bison. The grandkid has never heard a leaf blower and has no idea why anyone would want one.' },
+];
+const CRAFT = {
+  baker: { sup: '' }, fiddler: { sup: '' },
+  gardener: { sup: 'The gardens are asleep. The block supports the gardener while they sort seed and teach the kids to graft apple trees.' },
+  spinner: { sup: 'Not much call for yarn in high summer. The block supports the spinner while they learn to dye wool with plants from the gardens.' },
+  weaver: { sup: 'Nobody wants blankets in July. The block supports the weaver while they learn the fiddle from next door.' },
+  potter: { sup: 'The shelves are full and the kiln is cold for winter. The block supports the potter while they apprentice with the weaver at the loom.' },
+  beekeeper: { sup: 'The bees are clustered in the hives till spring. The block supports the beekeeper while they build new hives with the wheelwright.' },
+  wheelwright: { sup: 'Every wheel and bicycle on the block is running. The block supports the wheelwright while they learn to put the beehives to bed for winter.' },
+};
+const ROLE = { baker: 'Baker', gardener: 'Gardener', spinner: 'Spinner', weaver: 'Weaver', potter: 'Potter', beekeeper: 'Beekeeper', fiddler: 'Fiddler', wheelwright: 'Wheelwright' };
+const SEASON_NAMES = ['spring', 'summer', 'autumn', 'winter'];
+function statusOf(p) {
+  if (!p.craft) return null;
+  if (p.craft === 'shepherd') return { kind: 'rota', short: 'Shared work, paid', text: 'Shared work, paid. The morning round goes to the block\'s young people in turn.' };
+  if (idle(p.craft)) return { kind: 'sup', short: 'Supported', text: CRAFT[p.craft].sup };
+  return { kind: 'live', short: 'Living from it', text: `This ${SEASON_NAMES[SEASON]} there's plenty of need, so it's a living.` };
+}
+
+// ================= the composite: past on the left, someday on the right =================
+const canvas = $('scene');
+let tagRects = [], dpr = 1;
+function divX() { return (1 - FUT) * PW; }
+function visible(p) { if ((p.scene || 'block') !== SCENE) return false; const b = p.box(), cx = b.x + b.w / 2, d = divX(); if (cx < 0 || cx > PW) return false; if (p.era === 'both') return true; return p.era === 'past' ? cx < d : cx >= d; }
+function render() {
+  if (SCENE === 'fest') { siren = 0; drawFest(T, false); drawFest(T, true); } else { drawPast(T); drawFut(T); }
+  const r = canvas.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2);
+  const W2 = Math.max(240, Math.round(r.width * dpr)), H2 = Math.round(W2 * PH / PW);
+  if (canvas.width !== W2 || canvas.height !== H2) { canvas.width = W2; canvas.height = H2; }
+  const g = canvas.getContext('2d'); g.imageSmoothingEnabled = false;
+  g.drawImage(offP, 0, 0, W2, H2);
+  const sx = Math.floor(divX());
+  if (sx < PW) g.drawImage(offF, sx, 0, PW - sx, PH, sx / PW * W2, 0, W2 - sx / PW * W2, H2);
+  const k = W2 / PW, font = n => `700 ${Math.round(n)}px ${tok('--f-pixel') || 'monospace'}`;
+  // era labels
+  const lf = clamp(W2 / 55, 11 * dpr, 22 * dpr); g.font = font(lf); g.lineWidth = Math.max(2, lf / 5); g.strokeStyle = '#000000'; g.textBaseline = 'top';
+  if (FUT < 0.94) { g.fillStyle = '#ffffff'; g.textAlign = 'left'; const s0 = SCENE === 'fest' ? 'TODAY' : '1957'; g.strokeText(s0, 8 * dpr, 6 * dpr); g.fillText(s0, 8 * dpr, 6 * dpr); }
+  if (FUT > 0.06) { const s = 'SOMEDAY · ' + SEASON_NAMES[SEASON].toUpperCase(); g.fillStyle = '#eaffd8'; g.textAlign = 'right'; g.strokeText(s, W2 - 8 * dpr, 6 * dpr); g.fillText(s, W2 - 8 * dpr, 6 * dpr); }
+  g.textAlign = 'left';
+  if (SCENE === 'fest') {   // letter the banner at screen resolution
+    const bw = 38 * k, bh = 5 * k, t0 = 'CITY BARBECUE FESTIVAL'; let f = bh * 0.8; g.font = font(f); const mw = g.measureText(t0).width; if (mw > bw) { f *= bw / mw; g.font = font(f); }
+    g.fillStyle = '#fff3c4'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(t0, 120 * k, 40.5 * k);
+    { const t1 = 'HENSEL THICKET'; let f1 = 3 * k * 0.8; g.font = font(f1); const w1 = g.measureText(t1).width; if (w1 > 22 * k) { f1 *= 22 * k / w1; g.font = font(f1); } g.fillStyle = '#f4ead2'; g.fillText(t1, 74 * k, 48.2 * k); g.font = font(f1 * 0.75); g.fillStyle = '#ffd27a'; g.fillText('THE BEAUTIFUL', 74 * k, 45.8 * k); } g.textAlign = 'left'; g.textBaseline = 'alphabetic';
+  }
+  // selection box
+  if (SEL) { const p = PEOPLE.find(q => q.id === SEL); if (p && visible(p)) { const b = p.box(); g.setLineDash([4 * dpr, 3 * dpr]); g.strokeStyle = '#ffffff'; g.lineWidth = 1.5 * dpr; g.strokeRect(b.x * k, b.y * k, b.w * k, b.h * k); g.setLineDash([]); } }
+  // name tags
+  tagRects = [];
+  const showAll = CAPS && r.width >= 560, fs = clamp(W2 / 105, 9 * dpr, 13 * dpr); g.font = font(fs); g.textBaseline = 'middle';
+  const list = PEOPLE.filter(p => visible(p) && (showAll || p.id === SEL)).map(p => { const b = p.box(); return { p, cx: (b.x + b.w / 2) * k, top: b.y * k, bot: (b.y + b.h) * k }; }).sort((a, b) => a.cx - b.cx);
+  const placed = [];
+  list.forEach(({ p, cx, top, bot }) => {
+    const st = statusOf(p), label = (p.tag + (st && st.kind === 'sup' ? ' · supported' : '')).toUpperCase();
+    const w = g.measureText(label).width + fs * 0.9, h = fs * 1.5;
+    let x = clamp(cx - w / 2, 2, W2 - w - 2), y = p.tagBelow ? bot + 3 * dpr : top - h - 3 * dpr;
+    for (let tries = 0; tries < 6; tries++) { const hit = placed.find(q => x < q.x + q.w + 2 && x + w + 2 > q.x && y < q.y + q.h + 1 && y + h + 1 > q.y); if (!hit) break; y = p.tagBelow ? hit.y + hit.h + 2 : hit.y - h - 2; }
+    if (y < 2) y = Math.max(2, top + 2);
+    placed.push({ x, y, w, h });
+    const past = p.era === 'past', both = p.era === 'both', bg = both ? '#fffdf8' : past ? '#fff1d6' : (st && st.kind === 'sup' ? '#ffe2b8' : st && st.kind === 'rota' ? '#d6ecff' : '#e6f6d8'), fg = both ? '#1f1d1a' : past ? '#8a1c3c' : (st && st.kind === 'sup' ? '#7a4200' : st && st.kind === 'rota' ? '#0b4a8a' : '#1f5a28');
+    g.globalAlpha = 0.9; g.fillStyle = '#000000'; if (p.tagBelow) g.fillRect(cx - dpr / 2, bot, dpr, Math.max(0, y - bot)); else g.fillRect(cx - dpr / 2, y + h, dpr, Math.max(0, top - y - h)); g.globalAlpha = 1;
+    g.fillStyle = bg; g.fillRect(x, y, w, h); g.strokeStyle = p.id === SEL ? '#000000' : fg; g.lineWidth = dpr; g.strokeRect(x + 0.5, y + 0.5, w - 1, h - 1);
+    g.fillStyle = fg; g.fillText(label, x + fs * 0.45, y + h / 2 + dpr * 0.5);
+    tagRects.push({ id: p.id, x: x / dpr, y: y / dpr, w: w / dpr, h: h / dpr });
+  });
+  g.textBaseline = 'alphabetic';
+  // divider handle
+  const xd = (1 - FUT) * W2, hy = H2 * 0.5, hw = Math.max(16, W2 / 45);
+  g.fillStyle = 'rgba(255,255,255,0.9)'; g.fillRect(xd - dpr, 0, 2 * dpr, H2);
+  g.fillStyle = '#ffffff'; g.beginPath(); g.arc(xd, hy, hw * 0.9, 0, 2 * Math.PI); g.fill(); g.strokeStyle = '#1f1d1a'; g.lineWidth = dpr; g.stroke();
+  g.fillStyle = '#1f1d1a'; g.font = `700 ${Math.round(hw * 0.8)}px sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('◂▸', xd, hy + 1); g.textAlign = 'left'; g.textBaseline = 'alphabetic';
+}
+
+// ================= interaction =================
+function setFut(v, fromSlider) { FUT = clamp(v, 0, 1); if (!fromSlider) $('pan').value = Math.round(FUT * 100); }
+let dragging = false, downAt = null;
+function nearDivider(e) { const r = canvas.getBoundingClientRect(), xs = r.left + (1 - FUT) * r.width; return Math.abs(e.clientX - xs) < Math.max(22, r.width / 40); }
+canvas.addEventListener('pointerdown', e => {
+  downAt = { x: e.clientX, y: e.clientY };
+  if (nearDivider(e)) { dragging = true; canvas.setPointerCapture(e.pointerId); }
+});
+canvas.addEventListener('pointermove', e => {
+  if (dragging) { const r = canvas.getBoundingClientRect(); setFut(1 - (e.clientX - r.left) / r.width); return; }
+  canvas.style.cursor = nearDivider(e) ? 'ew-resize' : (hitTest(e) ? 'pointer' : '');
+});
+['pointerup', 'pointercancel'].forEach(tp => canvas.addEventListener(tp, e => {
+  const wasDrag = dragging; dragging = false;
+  if (tp === 'pointerup' && downAt && Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) < 6) { const p = hitTest(e); if (p) select(p.id, false); else if (!wasDrag) { const r = canvas.getBoundingClientRect(); /* a click in the scene away from anyone: nothing */ } }
+  downAt = null;
+}));
+function hitTest(e) {
+  const r = canvas.getBoundingClientRect(), cx = e.clientX - r.left, cy = e.clientY - r.top;
+  const tg = tagRects.find(q => cx >= q.x && cx <= q.x + q.w && cy >= q.y && cy <= q.y + q.h); if (tg) return PEOPLE.find(p => p.id === tg.id);
+  const sx = cx / r.width * PW, sy = cy / r.height * PH, era = sx < divX() ? 'past' : 'fut';
+  const hits = PEOPLE.filter(p => (p.era === era || p.era === 'both') && visible(p)).filter(p => { const b = p.box(); return sx >= b.x - 1 && sx <= b.x + b.w + 1 && sy >= b.y - 1 && sy <= b.y + b.h + 1; });
+  hits.sort((a, b) => { const A = a.box(), B = b.box(); return A.w * A.h - B.w * B.h; });
+  return hits[0] || null;
+}
+$('pan').addEventListener('input', () => setFut(+$('pan').value / 100, true));
+$('allPast').onclick = () => setFut(0); $('half').onclick = () => setFut(0.5); $('allFut').onclick = () => setFut(1);
+function select(id, reveal) {
+  SEL = id; if (!CLICKED.includes(id)) { CLICKED.push(id); if (CLICKED.length > 20) CLICKED.shift(); } const p = PEOPLE.find(q => q.id === id); if (!p) return;
+  if (reveal && p.era !== 'both' && !visible(p)) { const b = p.box(), c = (b.x + b.w / 2) / PW; setFut(p.era === 'past' ? Math.min(FUT, 1 - c - 0.12) : Math.max(FUT, 1 - c + 0.12)); }
+  fillCard();
+  document.querySelectorAll('.who button').forEach(b => b.setAttribute('aria-current', b.dataset.id === id));
+}
+function fillCard() {
+  const p = PEOPLE.find(q => q.id === SEL); if (!p) return;
+  const card = $('card'); card.classList.toggle('past', p.era === 'past');
+  $('cardEra').textContent = p.era === 'both' ? 'City Barbecue Festival · both sides' : p.era === 'past' ? (SCENE === 'fest' ? 'City Barbecue Festival · today' : '1957') : `${SCENE === 'fest' ? 'City Barbecue Festival · someday' : 'Someday'} · ${SEASON_NAMES[SEASON]}`;
+  $('cardTitle').textContent = p.title; $('cardText').textContent = p.text;
+  const st = statusOf(p); $('cardStatus').innerHTML = st ? `<b>${st.short}.</b> ${st.text}` : '';
+}
+function buildWho() {
+  ['past', 'fut', 'both'].forEach(era => { const el = $(era === 'past' ? 'whoPast' : era === 'fut' ? 'whoFut' : 'whoBoth');
+    el.innerHTML = PEOPLE.filter(p => p.era === era && (p.scene || 'block') === SCENE).map(p => `<button data-id="${p.id}" aria-current="false">${p.tag}</button>`).join('');
+    el.querySelectorAll('button').forEach(b => b.onclick = () => { select(b.dataset.id, true); $('card').scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' }); }); });
+}
+
+const DEFAULT_CARD = { era: $('cardEra').textContent, title: $('cardTitle').textContent, text: $('cardText').textContent };
+function setScene(sc) {
+  SCENE = sc; SEL = null; SEEN.scenes.add(sc);
+  document.querySelectorAll('#scenes button').forEach(b => b.setAttribute('aria-pressed', b.dataset.sc === sc));
+  const fest = sc === 'fest';
+  $('panA').textContent = fest ? 'Today' : '1957'; $('allPast').textContent = fest ? 'All today' : 'All 1957';
+  $('whoPastH').textContent = fest ? 'Today' : '1957'; $('whoBothWrap').hidden = !fest;
+  $('hWho').textContent = fest ? 'Who\'s at the festival' : 'Who\'s at the barbecue';
+  $('whoNote').textContent = fest ? 'The pit, the band, the tortillas and the families are the same on both sides. On the left, today\'s park crew blows and mows through the festival. On the right, the herd keeps the grass and the music carries.' : 'Most things on the left have a counterpart on the right, in the same spot. The siren pole holds bat boxes now; the fallout shelter is the root cellar; the sprinkler became a pond; the driveway is beehives and an apple tree; the paper route became the shepherd\'s round; and past the last house, a bison herd grazes the commons.';
+  $('card').classList.remove('past'); $('cardStatus').textContent = '';
+  if (fest) { $('cardEra').textContent = 'City Barbecue Festival'; $('cardTitle').textContent = 'The Beautiful Hensel Thicket, near campus'; $('cardText').textContent = 'The whole city came for Tejano barbecue: barbacoa from the pit, fajitas off the mesquite, tortillas from the comal and a conjunto on the bandstand. Drag the divider left and the park crew drowns it all out; drag it right and the herd keeps the grass instead. Click anyone to read about them.'; }
+  else { $('cardEra').textContent = DEFAULT_CARD.era; $('cardTitle').textContent = DEFAULT_CARD.title; $('cardText').textContent = DEFAULT_CARD.text; }
+  buildWho();
+}
+document.querySelectorAll('#scenes button').forEach(b => b.onclick = () => setScene(b.dataset.sc));
+$('goFest').onclick = () => { setScene('fest'); setFut(0.5); $('scenes').scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' }); };
+function setSeason(s) {
+  SEASON = s; document.querySelectorAll('#seasons button, #seasons2 button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.s === s));
+  econ(); if (SEL) fillCard();
+}
+document.querySelectorAll('#seasons button, #seasons2 button').forEach(b => b.onclick = () => setSeason(+b.dataset.s));
+document.querySelectorAll('#times button').forEach(b => b.onclick = () => { DUSK_TARGET = +b.dataset.t; if (!playing) DUSK = DUSK_TARGET; document.querySelectorAll('#times button').forEach(q => q.setAttribute('aria-pressed', q === b)); });
+$('caps').onchange = () => { CAPS = $('caps').checked; };
+$('playBtn').onclick = () => { playing = !playing; $('playBtn').textContent = playing ? 'Pause' : 'Play'; $('playBtn').setAttribute('aria-pressed', playing); };
+$('playBtn').textContent = playing ? 'Pause' : 'Play'; $('playBtn').setAttribute('aria-pressed', playing);
+function econ() {
+  const rows = PEOPLE.filter(p => p.craft && !p.scene).map(p => { const st = statusOf(p), d = p.craft === 'shepherd' ? 1 : DEMAND[p.craft][SEASON];
+    return `<tr><td><b>${p.craft === 'shepherd' ? 'Shepherd, 14' : ROLE[p.craft]}</b></td><td style="min-width:110px">${p.craft === 'shepherd' ? 'every day' : Math.round(d * 100) + '%'}<div class="bar"><i class="${st.kind === 'sup' ? 'low' : ''}" style="width:${Math.round(d * 100)}%"></i></div></td><td><span class="pill ${st.kind}">${st.short}</span></td><td>${st.text}</td></tr>`; });
+  $('econ').innerHTML = `<tr><th>Who</th><th>How much the block needs it</th><th>Status</th><th>This ${SEASON_NAMES[SEASON]}</th></tr>` + rows.join('');
+  const crafts = PEOPLE.filter(p => p.craft && !p.scene && p.craft !== 'shepherd'), sup = crafts.filter(p => idle(p.craft)).length;
+  $('econSum').innerHTML = `<b>This ${SEASON_NAMES[SEASON]}:</b> ${crafts.length - sup} of ${crafts.length} crafts people make a living from their craft, ${sup ? `${sup} ${sup === 1 ? 'is' : 'are'} supported between purposes (their tags on the street turn amber), ` : 'nobody needs supporting, '}and the shepherd's round is shared work. Change the season to see the need move around.`;
+}
+
+// ================= sound: sprinklers and a radio on the left, birds, bees, sheep and a fiddle on the right =================
+let AC = null, BUS = null, soundOn = false, userMuted = false, lastSiren = 0;
+const NX = {};
+function noiseBuf() { const n = AC.sampleRate * 2, b = AC.createBuffer(1, n, AC.sampleRate), d = b.getChannelData(0); for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1; return b; }
+function loopNoise() { const s = AC.createBufferSource(); s.buffer = BUS.noise; s.loop = true; s.start(); return s; }
+function audioInit() {
+  if (AC) return true;
+  try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return false; }
+  const comp = AC.createDynamicsCompressor(); comp.connect(AC.destination);
+  const master = AC.createGain(); master.gain.value = 0; master.connect(comp);
+  const past = AC.createGain(), fut = AC.createGain(), both = AC.createGain(); [past, fut, both].forEach(b => b.connect(master));
+  BUS = { master, past, fut, both, noise: null }; BUS.noise = noiseBuf();
+  // a crowd talking, both eras
+  { const s = loopNoise(), bp = AC.createBiquadFilter(), g = AC.createGain(), lfo = AC.createOscillator(), lg = AC.createGain();
+    bp.type = 'bandpass'; bp.frequency.value = 520; bp.Q.value = 1.4; g.gain.value = 0.035; lfo.frequency.value = 0.31; lg.gain.value = 0.015; lfo.connect(lg); lg.connect(g.gain); lfo.start();
+    s.connect(bp); bp.connect(g); g.connect(both); }
+  // 1957: grill sizzle and a power mower somewhere down the block
+  { const s = loopNoise(), hp = AC.createBiquadFilter(), g = AC.createGain(); hp.type = 'highpass'; hp.frequency.value = 5200; g.gain.value = 0.012; s.connect(hp); hp.connect(g); g.connect(past); }
+  { const o = AC.createOscillator(), o2 = AC.createOscillator(), lp = AC.createBiquadFilter(), g = AC.createGain(), lfo = AC.createOscillator(), lg = AC.createGain();
+    o.type = 'sawtooth'; o.frequency.value = 86; o2.type = 'square'; o2.frequency.value = 43; lp.type = 'lowpass'; lp.frequency.value = 380; g.gain.value = 0.02;
+    lfo.frequency.value = 0.07; lg.gain.value = 0.012; lfo.connect(lg); lg.connect(g.gain); [o, o2].forEach(x => { x.connect(lp); x.start(); }); lfo.start(); lp.connect(g); g.connect(past); }
+  // someday: bees and a breeze
+  { const g = AC.createGain(), lfo = AC.createOscillator(), lg = AC.createGain(); g.gain.value = 0.006; lfo.frequency.value = 9; lg.gain.value = 0.003; lfo.connect(lg); lg.connect(g.gain); lfo.start();
+    [221, 226, 233].forEach(f => { const o = AC.createOscillator(); o.type = 'triangle'; o.frequency.value = f; o.connect(g); o.start(); }); g.connect(fut); }
+  { const s = loopNoise(), lp = AC.createBiquadFilter(), g = AC.createGain(), lfo = AC.createOscillator(), lg = AC.createGain(); lp.type = 'lowpass'; lp.frequency.value = 420; g.gain.value = 0.03; lfo.frequency.value = 0.11; lg.gain.value = 0.02; lfo.connect(lg); lg.connect(g.gain); lfo.start(); s.connect(lp); lp.connect(g); g.connect(fut); }
+  // festival: a two-stroke crew on the today side, and a band whose sound carries more the further right you go
+  { const g = AC.createGain(); g.gain.value = 0;
+    [[118, 'sawtooth', 0.5], [236, 'sawtooth', 0.25], [59, 'square', 0.25]].forEach(([f, tp, a]) => { const o = AC.createOscillator(), og = AC.createGain(); o.type = tp; o.frequency.value = f; og.gain.value = a; o.connect(og); og.connect(g); o.start(); });
+    const s = loopNoise(), bp = AC.createBiquadFilter(), ng = AC.createGain(); bp.type = 'bandpass'; bp.frequency.value = 1500; bp.Q.value = 0.6; ng.gain.value = 0.7; s.connect(bp); bp.connect(ng); ng.connect(g);
+    const lp = AC.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 3000; g.connect(lp); lp.connect(past); BUS.crew = g; }
+  { const lp = AC.createBiquadFilter(), g = AC.createGain(); lp.type = 'lowpass'; lp.frequency.value = 8000; g.gain.value = 0; lp.connect(g); g.connect(master); BUS.music = lp; BUS.musicG = g; }
+  const t = AC.currentTime; ['spr', 'radio', 'horn', 'bird', 'bleat', 'fiddle', 'pop', 'hen', 'polka', 'grunt', 'cheer'].forEach((k, i) => NX[k] = t + 0.5 + i * 0.7);
+  return true;
+}
+function env(g, t, a, peak, d) { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + d); }
+function burst(bus, t, f, q, dur, peak, pan = 0) { const s = AC.createBufferSource(); s.buffer = BUS.noise; const bp = AC.createBiquadFilter(), g = AC.createGain(); bp.type = 'bandpass'; bp.frequency.value = f; bp.Q.value = q; env(g, t, 0.002, peak, dur); s.connect(bp); bp.connect(g); route(g, bus, pan); s.start(t, Math.random()); s.stop(t + dur + 0.05); }
+function route(node, bus, pan) { if (AC.createStereoPanner) { const p = AC.createStereoPanner(); p.pan.value = pan; node.connect(p); p.connect(bus); } else node.connect(bus); }
+function tone(bus, t, f, dur, type, peak, opts = {}) {
+  const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.setValueAtTime(f, t);
+  if (opts.to) o.frequency.exponentialRampToValueAtTime(opts.to, t + dur);
+  let last = g;
+  if (opts.lp) { const lp = AC.createBiquadFilter(); lp.type = opts.bp ? 'bandpass' : 'lowpass'; lp.frequency.value = opts.lp; lp.Q.value = opts.q || 0.7; g.connect(lp); last = lp; }
+  if (opts.vib) { const l = AC.createOscillator(), lg = AC.createGain(); l.frequency.value = opts.vib; lg.gain.value = opts.vibD || f * 0.01; l.connect(lg); lg.connect(o.frequency); l.start(t); l.stop(t + dur + 0.1); }
+  env(g, t, opts.a || 0.01, peak, dur); o.connect(g); route(last, bus, opts.pan || 0); o.start(t); o.stop(t + dur + 0.1);
+}
+const mtof = m => 440 * Math.pow(2, (m - 69) / 12);
+// an original radio jingle and an original jig, nothing borrowed
+const JINGLE = [[72, 1], [76, 1], [79, 1], [84, 2], [83, 1], [79, 1], [81, 2], [77, 1], [74, 1], [72, 3]];
+// an original polka for the conjunto: melody in eighth notes, then one bass root per 2/4 bar
+const POLKA = [[67, 1], [71, 1], [74, 1], [71, 1], [72, 1], [76, 1], [74, 2], [71, 1], [67, 1], [69, 1], [71, 1], [72, 2], [69, 2],
+  [66, 1], [69, 1], [72, 1], [69, 1], [71, 1], [74, 1], [72, 2], [69, 1], [66, 1], [67, 1], [69, 1], [71, 2], [67, 2]];
+const POLKA_ROOTS = [55, 60, 55, 62, 62, 55, 62, 55];
+const JIG = [[62, 1], [66, 1], [69, 1], [74, 2], [72, 1], [71, 1], [69, 1], [66, 1], [67, 2], [69, 1], [66, 1], [64, 1], [62, 3],
+  [66, 1], [69, 1], [71, 1], [72, 2], [71, 1], [69, 1], [66, 1], [64, 1], [66, 1], [67, 1], [64, 1], [62, 4]];
+function audioTick() {
+  if (!AC || !BUS) return;
+  const now = AC.currentTime, ahead = now + 0.25;
+  const a = FUT * Math.PI / 2;
+  BUS.past.gain.setTargetAtTime(Math.cos(a), now, 0.08); BUS.fut.gain.setTargetAtTime(Math.sin(a), now, 0.08);
+  BUS.master.gain.setTargetAtTime(soundOn ? 0.55 : 0, now, 0.25);
+  const fest = SCENE === 'fest';
+  BUS.crew.gain.setTargetAtTime(fest ? 0.07 + 0.02 * Math.sin(now * 0.7) : 0, now, 0.2);
+  BUS.musicG.gain.setTargetAtTime(fest ? 0.1 + 0.9 * FUT : 0, now, 0.1); BUS.music.frequency.setTargetAtTime(450 + 7500 * FUT * FUT, now, 0.1);
+  if (!soundOn || AC.state !== 'running') return;
+  if (fest) {
+    if (NX.polka < ahead) { const e = 0.15, t0 = Math.max(NX.polka, now); let tm = t0;
+      POLKA.forEach(([m, d]) => { tone(BUS.music, tm, mtof(m), d * e * 0.92, 'square', 0.028, { a: 0.008, lp: 2400, vib: 6, vibD: mtof(m) * 0.004 }); tone(BUS.music, tm, mtof(m - 3), d * e * 0.92, 'square', 0.014, { a: 0.008, lp: 2000 }); tm += d * e; });
+      for (let b = 0; b < 16; b++) { const root = POLKA_ROOTS[b >> 1], tb = t0 + b * 2 * e;
+        tone(BUS.music, tb, mtof(root - 12 + (b % 2 ? 7 : 0)), 0.18, 'triangle', 0.09, {});
+        [0, 4, 7].forEach(iv => tone(BUS.music, tb + e, mtof(root + iv), 0.09, 'sawtooth', 0.012, { lp: 1800 })); burst(BUS.music, tb + e, 2500, 0.8, 0.05, 0.03); }
+      NX.polka = tm + 0.3; }
+    if (NX.grunt < ahead) { const t0 = Math.max(NX.grunt, now); tone(BUS.fut, t0, 72, 0.7, 'sawtooth', 0.07, { a: 0.08, lp: 240, to: 52, pan: -0.5 }); NX.grunt = t0 + 5 + Math.random() * 7; }
+    if (NX.cheer < ahead) { const t0 = Math.max(NX.cheer, now); const s = AC.createBufferSource(); s.buffer = BUS.noise; const bp = AC.createBiquadFilter(), g = AC.createGain(); bp.type = 'bandpass'; bp.frequency.value = 1300; bp.Q.value = 0.7; g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(0.05, t0 + 0.4); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.8); s.connect(bp); bp.connect(g); g.connect(BUS.music); s.start(t0); s.stop(t0 + 2); NX.cheer = t0 + 9 + Math.random() * 9; }
+    if (NX.bird < ahead) { const t0 = Math.max(NX.bird, now), f = 2600 + Math.random() * 2000; for (let k = 0; k < 3; k++) tone(BUS.fut, t0 + k * 0.11, f, 0.07, 'sine', 0.04, { to: f * 0.7, pan: 0.7 }); NX.bird = t0 + 1.5 + Math.random() * 3; }
+    return;
+  }
+  if (NX.spr < ahead) { const t0 = Math.max(NX.spr, now); for (let k = 0; k < 14; k++) burst(BUS.past, t0 + k * 0.15, 3800, 1.5, 0.018, 0.12, -0.6); for (let k = 0; k < 10; k++) burst(BUS.past, t0 + 2.2 + k * 0.035, 3400, 1.5, 0.012, 0.08, -0.6); NX.spr = t0 + 2.9; }
+  if (NX.radio < ahead) { let t0 = Math.max(NX.radio, now); JINGLE.forEach(([m, d]) => { tone(BUS.past, t0, mtof(m), d * 0.15, 'square', 0.035, { lp: 1600, bp: true, q: 1.1, pan: 0.25 }); t0 += d * 0.17; }); NX.radio = t0 + 12 + Math.random() * 6; }
+  if (NX.horn < ahead) { const t0 = Math.max(NX.horn, now); [0, 0.32].forEach(d => { tone(BUS.past, t0 + d, 349, 0.22, 'square', 0.025, { lp: 1400, pan: 0.6 }); tone(BUS.past, t0 + d, 440, 0.22, 'square', 0.025, { lp: 1400, pan: 0.6 }); }); NX.horn = t0 + 18 + Math.random() * 14; }
+  if (siren > 0.05 && lastSiren === 0) { const t0 = now + 0.02; tone(BUS.past, t0, 260, 9, 'sawtooth', 0.04, { a: 2.5, to: 330, lp: 900 }); const o = AC.createOscillator(), g = AC.createGain(), lp = AC.createBiquadFilter(); o.type = 'sine'; o.frequency.setValueAtTime(240, t0); o.frequency.linearRampToValueAtTime(760, t0 + 3.5); o.frequency.setValueAtTime(760, t0 + 5.5); o.frequency.linearRampToValueAtTime(260, t0 + 9); lp.type = 'lowpass'; lp.frequency.value = 1400; g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(0.06, t0 + 2); g.gain.setValueAtTime(0.06, t0 + 7); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 9); o.connect(lp); lp.connect(g); route(g, BUS.past, -0.3); o.start(t0); o.stop(t0 + 9.2); }
+  lastSiren = siren > 0.05 ? 1 : 0;
+  if (NX.bird < ahead) { const t0 = Math.max(NX.bird, now), n = 2 + (Math.random() * 3 | 0), f = 2600 + Math.random() * 2200, p = Math.random() * 1.6 - 0.8; for (let k = 0; k < n; k++) tone(BUS.fut, t0 + k * 0.11, f * (1 + 0.15 * Math.random()), 0.07, 'sine', 0.05, { to: f * 0.7, pan: p }); NX.bird = t0 + 0.4 + Math.random() * 1.8; }
+  if (NX.bleat < ahead) { const t0 = Math.max(NX.bleat, now), f = 260 + Math.random() * 120; tone(BUS.fut, t0, f, 0.7, 'sawtooth', 0.05, { a: 0.05, lp: 1100, bp: true, q: 2.5, vib: 7, vibD: 14, to: f * 0.92, pan: Math.random() * 0.6 }); NX.bleat = t0 + 4 + Math.random() * 6; }
+  if (NX.fiddle < ahead) { let t0 = Math.max(NX.fiddle, now); JIG.forEach(([m, d]) => { tone(BUS.fut, t0, mtof(m), d * 0.2, 'sawtooth', 0.03, { a: 0.03, lp: 2200, vib: 5.5, vibD: mtof(m) * 0.006, pan: -0.45 }); t0 += d * 0.2; }); NX.fiddle = t0 + 8 + Math.random() * 6; }
+  if (NX.pop < ahead) { const t0 = Math.max(NX.pop, now); burst(BUS.fut, t0, 1200 + Math.random() * 2400, 3, 0.02, 0.1, -0.35); NX.pop = t0 + 0.1 + Math.random() * 0.6; }
+  if (NX.hen < ahead) { const t0 = Math.max(NX.hen, now); for (let k = 0; k < 3; k++) tone(BUS.fut, t0 + k * 0.13, 520 + k * 30, 0.08, 'square', 0.015, { lp: 1200, bp: true, q: 3, pan: 0.1 }); NX.hen = t0 + 6 + Math.random() * 8; }
+}
+function setSound(on) {
+  if (on && !audioInit()) { $('soundBtn').textContent = 'Sound: unavailable'; return; }
+  soundOn = on; if (on) SEEN.soundEver = true; if (on && AC.resume) AC.resume();
+  $('soundBtn').textContent = on ? 'Sound: on' : 'Sound: off'; $('soundBtn').setAttribute('aria-pressed', on);
+}
+$('soundBtn').onclick = e => { e.stopPropagation(); userMuted = soundOn; setSound(!soundOn); };
+document.addEventListener('pointerdown', e => { if (!soundOn && !userMuted && e.target.id !== 'soundBtn' && e.target.id !== 'themeBtn') setSound(true); }, { capture: true });
+
+
+// ================= be counted =================
+// Paste your own links here once the form and the newsletter exist (see SETUP-be-counted.md).
+// The form link receives only the three answers and non-identifying page settings; never add names, emails or locations.
+const COUNT_CFG = {
+  formUrl: '',          // e.g. https://tally.so/r/XXXXXX  (anonymous form)
+  newsUrl: '',          // e.g. your newsletter's sign-up page
+};
+const CLICKED = [], SEEN = { scenes: new Set(['block']), soundEver: false };
+function countParams() {
+  return { keep_grass: $('ct_keep').value, role: $('ct_role').value, join: $('ct_join').value,
+    divider_pct_someday: Math.round(FUT * 100), scene: SCENE, scenes_seen: [...SEEN.scenes].join(' '), season: SEASON_NAMES[SEASON], dusk: DUSK_TARGET ? 'yes' : 'no',
+    clicked: CLICKED.join(' ') || 'none', sound: SEEN.soundEver ? 'on' : 'never' };
+}
+function countSummary() {
+  const p = countParams(), opt = id => $(id).selectedOptions[0].textContent;
+  const rows = [['Keep the grass', opt('ct_keep')], ['Your role', opt('ct_role')], ['Join?', opt('ct_join')], ['Divider', `${p.divider_pct_someday}% someday`], ['Scene now', p.scene === 'fest' ? 'festival' : 'the block'],
+    ['Scenes seen', [...SEEN.scenes].map(x => x === 'fest' ? 'the festival' : 'the block').join(' and ')], ['Season', p.season], ['Dusk', p.dusk], ['Who you clicked', CLICKED.map(id => (PEOPLE.find(q => q.id === id) || {}).tag).filter(Boolean).join(', ') || 'nobody yet'], ['Sound', p.sound]];
+  $('ctSummary').innerHTML = `<tr><th colspan="2">What the form will receive</th></tr>` + rows.map(r => `<tr><td>${r[0]}</td><td class="n">${r[1]}</td></tr>`).join('');
+  setLink('ctForm', 'ctFormMsg', COUNT_CFG.formUrl, p); }
+function setLink(id, msgId, url, params) {
+  const a = $(id); if (!url) { a.removeAttribute('href'); a.setAttribute('aria-disabled', 'true'); $(msgId).textContent = 'coming soon'; return; }
+  let u; try { u = new URL(url); } catch (e) { a.removeAttribute('href'); $(msgId).textContent = 'link not valid'; return; }
+  if (params) Object.entries(params).forEach(([k, v]) => u.searchParams.set(k, v)); a.href = u.toString(); a.removeAttribute('aria-disabled'); $(msgId).textContent = ''; }
+['ctForm', 'ctNews'].forEach(id => $(id).addEventListener('click', e => { if (!$(id).getAttribute('href')) { e.preventDefault(); $(id + 'Msg').textContent = 'coming soon: the link isn\'t set up yet'; } }));
+['ct_keep', 'ct_role', 'ct_join'].forEach(id => $(id).addEventListener('change', countSummary));
+setLink('ctNews', 'ctNewsMsg', COUNT_CFG.newsUrl, null);
+setInterval(countSummary, 1000);
+
+// ================= loop =================
+let last = performance.now();
+function frame(now) {
+  const dt = Math.min(0.1, (now - last) / 1000); last = now;
+  if (playing) T += dt;
+  DUSK += (DUSK_TARGET - DUSK) * Math.min(1, dt * 2.5); if (Math.abs(DUSK - DUSK_TARGET) < 0.01) DUSK = DUSK_TARGET;
+  render(); audioTick();
+  requestAnimationFrame(frame);
+}
+buildWho(); econ(); setSeason(1); countSummary();
+T = 3; render();
+requestAnimationFrame(frame);
+window.addEventListener('resize', render);
+})();
+</script>
+</body>
+</html>
