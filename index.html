@@ -98,6 +98,18 @@ a.btn.go { background: var(--fut); border-color: var(--fut); color: var(--panel)
 a.btn:hover { border-color: var(--fut); } a.btn:focus-visible { outline: 2px solid var(--fut); outline-offset: 2px; }
 select { font: 400 14px var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 5px 8px; max-width: 100%; }
 .ask { display: grid; gap: 4px; font-size: 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { font-weight: 400; }
+.chips button[aria-pressed="true"] { background: var(--fut); border-color: var(--fut); color: var(--panel); font-weight: 700; }
+.result { border: 1px solid var(--line); border-left: 5px solid var(--fut); border-radius: 10px; padding: 10px 12px; display: grid; gap: 6px; align-content: start; }
+.result .big { font: 700 18px/1.25 var(--f-body); }
+.result ul { margin: 0; padding-left: 18px; font-size: 14px; display: grid; gap: 3px; }
+.steps { margin: 0; padding-left: 20px; font-size: 14.5px; display: grid; gap: 6px; }
+.rule, .ask { min-width: 0; }
+.ask select { width: 100%; min-width: 0; text-overflow: ellipsis; }
+input[type=date] { min-width: 0; display: block; }
+input[type=text], input[type=date] { font: 400 14px var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; width: 100%; max-width: 100%; }
+textarea { font: 400 14px/1.5 var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; width: 100%; min-height: 150px; resize: vertical; }
 table.sum { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 table.sum td, table.sum th { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 table.sum th { font: 500 11px var(--f-mono); text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
@@ -160,6 +172,74 @@ footer a, .refs a { color: var(--sky); }
       <li><b>Goats browse instead of grazing.</b> They eat leaves, vines and brush, so cities hire goat herds to clear invasive thickets and steep slopes where mowers can't go. Texas raises more goats than any other state. In the festival scene they work the edge of the Thicket.</li>
       <li><b>Sheep go for the flowering plants</b> more than the grass, which is why towns and ranchers hire flocks for verges, weeds and old lawns, and keep the bison on the prairie.</li>
     </ul>
+  </section>
+
+  <section class="bench" aria-labelledby="hPP">
+    <header><h2 id="hPP">Pasture Partners</h2><span class="eyebrow">trade the leaf blower for a flock</span></header>
+    <p class="note">We connect you with grazing and browsing livestock from a herder nearby. They eat what the mower and the blower used to deal with, a young shepherd checks on them twice a day, and we clean up the poop if you want. Tell us about your yard.</p>
+    <div class="two">
+      <div style="display:grid;gap:12px;min-width:0;align-content:start">
+        <label class="ask" for="pp_area">How big is the patch? <b id="pp_areaV"></b><input id="pp_area" type="range" min="50" max="4000" step="50" value="800"></label>
+        <div class="ask"><span>What's growing there? (pick all that apply)</span>
+          <div class="chips" id="pp_cover">
+            <button data-c="lawn" aria-pressed="true">Lawn</button><button data-c="tall" aria-pressed="false">Tall grass and weeds</button>
+            <button data-c="brush" aria-pressed="true">Brush and saplings</button><button data-c="vines" aria-pressed="false">Vines and poison ivy</button>
+            <button data-c="bramble" aria-pressed="false">Blackberry brambles</button>
+          </div></div>
+        <label class="ask" for="pp_days">How many days can they stay? <b id="pp_daysV"></b><input id="pp_days" type="range" min="1" max="14" step="1" value="5"></label>
+        <div class="ask"><span>The poop</span>
+          <span class="seg" id="pp_poop"><button data-p="clean" aria-pressed="true">Clean it up for compost</button><button data-p="leave" aria-pressed="false">Leave it: it's fertiliser</button></span></div>
+      </div>
+      <div class="result" id="pp_out" aria-live="polite"></div>
+    </div>
+    <p class="note"><b>How the estimate works.</b> Rough numbers, not a quote. Each kind of growth holds a typical amount of edible dry matter per square metre (lawn least, brush most), and the animals take about half and leave half to regrow. A sheep eats about 1.5 kg of dry matter a day and a goat about 1.3 kg. Sheep get the grass, goats get the brush, vines and brambles, and neither is ever sent alone: both are herd animals. Manure runs about 1 to 2 kg per animal per day, in pellets.</p>
+  </section>
+
+  <section class="bench" aria-labelledby="hPlan">
+    <header><h2 id="hPlan">Organize your neighborhood barbecue today!</h2><span class="eyebrow">plan it, then pass it on</span></header>
+    <div class="three">
+      <div class="rule"><span class="n">1</span><h3>Pick a day and a place</h3>
+        <label class="ask" for="pl_date">Day<input id="pl_date" type="date"></label>
+        <label class="ask" for="pl_place">Place
+          <select id="pl_place"><option value="yard">A backyard on the block</option><option value="street">The street itself (ask the city about a block-party permit)</option><option value="park" selected>A park pavilion (reserve it with the parks office)</option></select></label>
+        <label class="ask" for="pl_where">What you'll call it<input id="pl_where" type="text" value="the Beautiful Hensel Thicket" maxlength="60"></label>
+      </div>
+      <div class="rule"><span class="n">2</span><h3>Nominate a grill-master</h3>
+        <label class="ask" for="pl_gm">Their title, not their name<input id="pl_gm" type="text" value="the corner house" maxlength="40"></label>
+        <p>Then they learn the way to kitchen-safe, and teach the next one:</p>
+        <ol class="steps" id="pl_path">
+          <li><label class="toggle"><input type="checkbox" data-s="0"> A probe thermometer, and the temperatures below</label></li>
+          <li><label class="toggle"><input type="checkbox" data-s="1"> A food handler course (a couple of hours online; Texas and most states accredit them)</label></li>
+          <li><label class="toggle"><input type="checkbox" data-s="2"> Teach next year's grill-master</label></li>
+          <li><label class="toggle"><input type="checkbox" data-s="3"> Certified food manager exam, so they can run a festival booth</label></li>
+        </ol>
+        <p class="status" id="pl_rank" style="font-size:14px;color:var(--muted)"></p>
+      </div>
+      <div class="rule"><span class="n">3</span><h3>Build the menu</h3>
+        <div class="chips" id="pl_menu">
+          <button aria-pressed="true">Wagyu</button><button aria-pressed="true">Miso-glazed tempeh</button><button aria-pressed="true">Fermented cabbage slaw</button>
+          <button aria-pressed="false">Barbacoa</button><button aria-pressed="false">Fajitas on mesquite</button><button aria-pressed="false">Grilled corn</button>
+          <button aria-pressed="false">Tortillas</button><button aria-pressed="false">Pan de campo</button><button aria-pressed="false">Aguas frescas</button>
+          <button aria-pressed="true">Whatever's ripe in the gardens</button>
+        </div>
+        <p class="note">Fermented cabbage slaw is the old way to keep cabbage: shredded, salted and left a few days to sour, like sauerkraut or curtido. Miso and tempeh are fermented too. It's a very alive menu.</p>
+      </div>
+    </div>
+    <div class="two">
+      <div style="display:grid;gap:8px;min-width:0"><h3>Your invitation</h3>
+        <textarea id="pl_inv" readonly aria-label="Invitation text to copy"></textarea>
+        <div class="btns"><button id="pl_copy">Copy the invitation</button><span class="eyebrow" id="pl_copyMsg"></span></div></div>
+      <div style="display:grid;gap:6px;min-width:0;align-content:start"><h3>Kitchen-safe, in one card</h3>
+        <ul class="menu">
+          <li>Steaks, chops and roasts (wagyu too): 145 °F, then rest 3 minutes</li>
+          <li>Burgers and anything ground: 160 °F</li>
+          <li>Chicken and turkey: 165 °F</li>
+          <li>Tempeh: steam or simmer it first, then grill for the char</li>
+          <li>Keep cold food below 40 °F and hot food above 140 °F</li>
+          <li>Nothing sits out more than 2 hours, or 1 hour above 90 °F</li>
+          <li>Selling food at a festival usually needs a temporary food permit from the local health department</li>
+        </ul></div>
+    </div>
   </section>
 
   <section class="bench" aria-labelledby="hFest">
@@ -1236,6 +1316,55 @@ function setLink(id, msgId, url, params) {
 ['ct_keep', 'ct_role', 'ct_join'].forEach(id => $(id).addEventListener('change', countSummary));
 setLink('ctNews', 'ctNewsMsg', COUNT_CFG.newsUrl, null);
 setInterval(countSummary, 1000);
+
+
+// ================= pasture partners =================
+const COVER = { lawn: { dm: 0.15, who: 'sheep', name: 'lawn' }, tall: { dm: 0.35, who: 'sheep', name: 'tall grass' }, brush: { dm: 0.5, who: 'goat', name: 'brush' },
+  vines: { dm: 0.3, who: 'goat', name: 'vines and poison ivy' }, bramble: { dm: 0.4, who: 'goat', name: 'brambles' } };
+let PP_POOP = 'clean';
+function pasture() {
+  const area = +$('pp_area').value, days = +$('pp_days').value, picked = [...document.querySelectorAll('#pp_cover button[aria-pressed="true"]')].map(b => b.dataset.c);
+  $('pp_areaV').textContent = `${area.toLocaleString()} m² (${Math.round(area * 10.764).toLocaleString()} ft², ${(area / 4047).toFixed(2)} acre)`;
+  $('pp_daysV').textContent = `${days} day${days > 1 ? 's' : ''}`;
+  if (!picked.length) { $('pp_out').innerHTML = '<p class="note">Pick at least one kind of growth.</p>'; return; }
+  let fs = 0, fg = 0; picked.forEach(c => { const f = area / picked.length * COVER[c].dm * 0.5; if (COVER[c].who === 'sheep') fs += f; else fg += f; });
+  const herd = (f, eat) => f <= 0 ? 0 : Math.max(2, Math.ceil(f / (days * eat)));
+  const ns = herd(fs, 1.5), ng = herd(fg, 1.3), poop = Math.round((ns * 1.5 + ng * 1.3) * days);
+  const crew = [ns ? `${ns} sheep` : '', ng ? `${ng} goats` : ''].filter(Boolean).join(' and ');
+  const notes = [];
+  if (ns) notes.push(`Sheep for the ${picked.filter(c => COVER[c].who === 'sheep').map(c => COVER[c].name).join(' and ')}: they crop grass close and evenly.`);
+  if (ng) notes.push(`Goats for the ${picked.filter(c => COVER[c].who === 'goat').map(c => COVER[c].name).join(' and ')}: they browse leaves, vines and stems, poison ivy included, and stand on their hind legs to reach.`);
+  notes.push('Portable electric netting, a water trough and some shade come with them.');
+  notes.push('Pull any oleander, yew, azalea or cherry laurel first: they are poisonous to sheep and goats.');
+  notes.push(PP_POOP === 'clean' ? `About ${poop.toLocaleString()} kg of pellets, raked up and taken to the gardens' compost.` : `About ${poop.toLocaleString()} kg of pellets, left in place to feed the soil. They break down in a few weeks of rain.`);
+  $('pp_out').innerHTML = `<span class="eyebrow">Your Pasture Partners crew</span><div class="big">${crew}, for ${days} day${days > 1 ? 's' : ''}</div><ul>${notes.map(n => `<li>${n}</li>`).join('')}</ul>
+    <div class="btns"><button id="pp_ask">Ask for a Pasture Partner</button><span class="eyebrow" id="pp_askMsg"></span></div>`;
+  $('pp_ask').onclick = () => { $('pp_askMsg').textContent = 'coming soon: no herders signed up yet'; };
+}
+['pp_area', 'pp_days'].forEach(id => $(id).addEventListener('input', pasture));
+document.querySelectorAll('#pp_cover button').forEach(b => b.onclick = () => { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'); pasture(); });
+document.querySelectorAll('#pp_poop button').forEach(b => b.onclick = () => { PP_POOP = b.dataset.p; document.querySelectorAll('#pp_poop button').forEach(q => q.setAttribute('aria-pressed', q === b)); pasture(); });
+
+// ================= the barbecue planner =================
+const RANKS = ['Nominated', 'Thermometer in hand', 'Food handler', 'Teacher of grill-masters', 'Certified food manager'];
+function plan() {
+  const steps = [...document.querySelectorAll('#pl_path input')]; let rank = 0; for (const c of steps) { if (c.checked) rank++; else break; }
+  const gm = ($('pl_gm').value.trim() || 'our grill-master'), where = ($('pl_where').value.trim() || 'the park');
+  $('pl_rank').innerHTML = `<b>Rank:</b> ${RANKS[rank]}${rank === 4 ? '. Fully kitchen-safe, and ready to run the festival booth.' : ''}`;
+  const menu = [...document.querySelectorAll('#pl_menu button[aria-pressed="true"]')].map(b => b.textContent);
+  const d = $('pl_date').value ? new Date($('pl_date').value + 'T12:00:00').toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }) : 'a Saturday soon';
+  const placeLine = { yard: `in a backyard on the block, out by ${where}`, street: `right out on the street, ${where}`, park: `at the pavilion in ${where}` }[$('pl_place').value];
+  $('pl_inv').value = `You're invited to a neighborhood barbecue!\n\nWhen: ${d}, afternoon into dusk\nWhere: ${placeLine}\nOn the grill: ${gm} (${RANKS[rank].toLowerCase()})\n\nOn the menu: ${menu.length ? menu.join(', ') : 'whatever everyone brings'}.\n\nBring a dish, a chair and somebody new. No leaf blowers. The animals keeping the grass are welcome to stay.`;
+}
+['pl_date', 'pl_place', 'pl_where', 'pl_gm'].forEach(id => $(id).addEventListener('input', plan));
+$('pl_place').addEventListener('change', plan);
+document.querySelectorAll('#pl_path input').forEach(c => c.addEventListener('change', plan));
+document.querySelectorAll('#pl_menu button').forEach(b => b.onclick = () => { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'); plan(); });
+$('pl_copy').onclick = () => {
+  const ta = $('pl_inv'), done = () => { $('pl_copyMsg').textContent = 'copied'; }, fallback = () => { ta.focus(); ta.select(); $('pl_copyMsg').textContent = 'selected: press Ctrl+C or Cmd+C'; };
+  try { navigator.clipboard.writeText(ta.value).then(done, fallback); } catch (e) { fallback(); }
+};
+pasture(); plan();
 
 // ================= loop =================
 let last = performance.now();
